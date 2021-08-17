@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+// The miniature service definition.
+service Miniature {
+  // Request a chunk
+  rpc RequestChunk (ChunkRequest) returns (ChunkReply) {}
+}
+
+// The request for a chunk with the maxSize
+message ChunkRequest {
+  uint32 maxSize = 1;
+}
+
+// The reply message containing chunk
+message ChunkReply {
+  string fileName = 1;
+  int64 offset = 2;
+  bytes data = 3;
+  string hash = 4;
+}

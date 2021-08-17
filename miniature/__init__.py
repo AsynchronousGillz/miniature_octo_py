@@ -4,7 +4,7 @@
 """
 """
 
-__title__ = 'miniature_octo_py'
+__title__ = 'miniature'
 __description__ = 'Split files into X size chunks'
 __url__ = 'https://github.com/AsynchronousGillz/psk'
 __version__ = '2021.8.15'

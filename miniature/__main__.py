@@ -7,8 +7,8 @@
 import argparse
 import logging
 
-from miniature_octo_py.split import split
-from miniature_octo_py.join import join
+from miniature.split import split
+from miniature.join import join
 
 logging.basicConfig(format='%(asctime)s %(message)s', level=logging.INFO)
 

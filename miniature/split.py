@@ -12,7 +12,7 @@ import json
 import logging
 import uuid
 
-from miniature_octo_py.environment import CHUNK_SIZE
+from miniature.environment import CHUNK_SIZE
 
 
 def split(input_file: str):
@@ -21,11 +21,11 @@ def split(input_file: str):
     file_size = file_stat_info.st_size
     number_of_chunks = file_size % CHUNK_SIZE
     logging.info("chuck_size: %d number_of_chunks: %d", CHUNK_SIZE, number_of_chunks)
-    parts_dir = make_part_dir()
+    parts_dir = _make_part_dir()
     hash_queue = Queue()
     with ThreadPoolExecutor(max_workers=5) as executor:
         for seek in range(0, file_size, CHUNK_SIZE):
-            executor.submit(make_chunk, input_file, parts_dir, seek, hash_queue)
+            executor.submit(_make_chunk, input_file, parts_dir, seek, hash_queue)
         executor.shutdown(wait=True)
 
     parts = []
@@ -39,7 +39,7 @@ def split(input_file: str):
         f.write(json.dumps({"file": input_file, "hash": file_hash.hexdigest(), "parts": parts}))
 
 
-def make_part_dir():
+def _make_part_dir():
     ret = str(uuid.uuid4())
     logging.info("making parts directory: %s", ret)
     try:
@@ -49,7 +49,7 @@ def make_part_dir():
     return ret
 
 
-def make_chunk(input_file, parts_dir, seek, hash_queue):
+def _make_chunk(input_file, parts_dir, seek, hash_queue):
     logging.info("input: %s parts_dir: %s seek: %s", input_file, parts_dir, seek)
     chunk_path = os.path.join(parts_dir, "{}.part".format(uuid.uuid4()))
     logging.info("chunk_path: %s", chunk_path)
