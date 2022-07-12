@@ -6,7 +6,7 @@
 
 __title__ = 'miniature'
 __description__ = 'Split files into X size chunks'
-__url__ = 'https://github.com/AsynchronousGillz/psk'
+__url__ = 'https://github.com/AsynchronousGillz/miniature_octo_py'
 __version__ = '2021.8.15'
 __author__ = 'gerhard van andel'
 __author_email__ = 'g@example.com'

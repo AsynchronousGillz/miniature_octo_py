@@ -6,9 +6,16 @@
 
 import os
 
-_chunk_size = "GFS_CHUNK_SIZE"
+_chunk_size = "MINIATURE_CHUNK_SIZE"
+
+_server_port = "MINIATURE_PORT"
 
 try:
     CHUNK_SIZE = int(os.getenv(_chunk_size, "10000"))
 except ValueError:
     CHUNK_SIZE = 10000
+
+try:
+    PORT = int(os.getenv(_server_port, "443"))
+except ValueError:
+    PORT = 2900

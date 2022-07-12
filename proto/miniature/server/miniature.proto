@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+// The miniature service definition.
+service Miniature {
+  // Request a chunk
+  rpc RequestChunk (ChunkRequest) returns (ChunkReply) {}
+  // Upload a file to another server
+  rpc UploadFile (FileUploadRequest) returns (FileUploadReply) {}
+  // Download a file to another server
+  rpc DownloadFile (FileDownloadRequest) returns (FileDownloadReply) {}
+  // Get chunk data
+  rpc ChunkData (ChunkInfoRequest) returns (ChunkInfoReply) {}
+}
+
+// The request for a chunk with the maxSize
+message ChunkRequest {
+  uint32 maxSize = 1;
+}
+
+// The reply message containing chunk
+message ChunkReply {
+  string fileName = 1;
+  uint64 offset = 2;
+  bytes data = 3;
+  string hash = 4;
+}
+
+message FileUploadRequest {
+  string fileName = 1;
+  string hash = 2;
+  bytes data = 3;
+}
+
+message FileUploadReply {
+  string id = 1;
+  string hash = 2;
+}
+
+message FileDownloadRequest {
+  string id = 1;
+}
+
+message FileDownloadReply {
+  string fileName = 1;
+  string hash = 2;
+  bytes data = 3;
+}
+
+message ChunkInfoRequest {
+  string id = 1;
+}
+
+message ChunkInfoReply {
+  string fileName = 1;
+  string hash = 2;
+  message Chunk {
+    string uri = 1;
+    string hash = 2;
+    uint64 offset = 3;
+  }
+  repeated Chunk parts = 3;
+}
