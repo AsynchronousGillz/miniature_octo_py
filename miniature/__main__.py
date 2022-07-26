@@ -7,8 +7,8 @@
 import argparse
 import logging
 
-from miniature.split import split
-from miniature.machinist.join import join
+from miniature.machinist.split import SplitMachinist
+from miniature.machinist.join import JoinMachinist
 from miniature.xtce import Xtce
 
 logging.basicConfig(format='%(asctime)s %(message)s', level=logging.INFO)
@@ -22,11 +22,11 @@ def main():
 
     match args.action:
         case 'split':
-            split(args.target)
+            SplitMachinist(args.target)
         case 'join':
-            join(args.target)
+            JoinMachinist(args.target)
         case 'xtce':
-            Xtce(args.target)
+            Xtce.load(args.target)
 
 
 if __name__ == "__main__":

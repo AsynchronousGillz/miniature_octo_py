@@ -1,0 +1,8 @@
+build
+grpcio
+grpcio-tools
+protobuf
+pydantic
+setuptools
+twine
+wheel
