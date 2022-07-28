@@ -14,6 +14,12 @@ from miniature.xtce import Xtce
 logging.basicConfig(format='%(asctime)s %(message)s', level=logging.INFO)
 
 
+def _load(file_name: str):
+    """ TODO """
+    with open(file_name, "r") as fp:
+        return fp.read()
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('target', type=str, help='file or directory to split or join')
@@ -26,7 +32,8 @@ def main():
         case 'join':
             JoinMachinist(args.target)
         case 'xtce':
-            Xtce.load(args.target)
+            source = _load(args.target)
+            s = Xtce.from_string(source)
 
 
 if __name__ == "__main__":
