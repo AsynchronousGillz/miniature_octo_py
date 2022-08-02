@@ -5,11 +5,11 @@
 """
 
 from concurrent.futures import ThreadPoolExecutor
+
 import grpc
 
 from miniature.environment import PORT
-from miniature.server import miniature_pb2
-from miniature.server import miniature_pb2_grpc
+from miniature.server import miniature_pb2, miniature_pb2_grpc
 
 
 def load_certs():
@@ -26,10 +26,7 @@ def load_certs():
 
 def grpc_setup():
     private_key, certificate_chain = load_certs()
-    credentials = grpc.ssl_server_credentials(
-        [(private_key, certificate_chain)],
-        require_client_auth=True
-    )
+    credentials = grpc.ssl_server_credentials([(private_key, certificate_chain)], require_client_auth=True)
     composite_credentials = grpc.composite_channel_credentials(credentials)
     return composite_credentials
 

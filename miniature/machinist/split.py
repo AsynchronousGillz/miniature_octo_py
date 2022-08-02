@@ -4,19 +4,18 @@
 """
 """
 
-from concurrent.futures import ThreadPoolExecutor
-from queue import Queue
 import hashlib
-import os
 import json
 import logging
+import os
 import uuid
+from concurrent.futures import ThreadPoolExecutor
+from queue import Queue
 
 from miniature.environment import CHUNK_SIZE
 
 
 class SplitMachinist:
-
     def __init__(self, input_file: str):
         file_stat_info = os.stat(input_file)
         logging.info("input_file: %s size: %d", input_file, file_stat_info.st_size)

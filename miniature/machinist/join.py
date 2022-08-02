@@ -4,16 +4,15 @@
 """
 """
 
-from queue import Queue
 import hashlib
-import os
-import sys
 import json
 import logging
+import os
+import sys
+from queue import Queue
 
 
 class JoinMachinist:
-
     def __init__(self, input_directory: str):
         meta_file = self._validate_input(input_directory)
         with open(meta_file, "r") as m:

@@ -1,8 +1,13 @@
 build
+black
+flake8
 grpcio
 grpcio-tools
+isort
+pre-commit
 protobuf
 pydantic
+pyspark
 setuptools
 twine
 wheel

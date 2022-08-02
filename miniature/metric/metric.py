@@ -4,12 +4,12 @@
 """
 
 from abc import ABC, abstractmethod
-from typing import Union
 from threading import RLock
+from typing import Union
 
 
 class Metric(ABC):
-    """ A simple metric class """
+    """A simple metric class"""
 
     def __init__(self, metric_name: str):
         """
@@ -31,7 +31,7 @@ class Metric(ABC):
     @abstractmethod
     def export(self) -> str:
         """
-        Metrics can be exposed to Prometheus using a simple text-based exposition format 
+        Metrics can be exposed to Prometheus using a simple text-based exposition format
         https://prometheus.io/docs/instrumenting/exposition_formats/
         :return:
         """

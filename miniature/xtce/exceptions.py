@@ -5,11 +5,8 @@
 
 
 class XtceError(ValueError):
-    """
-    """
+    """ """
 
 
 class XtceInputError(XtceError):
-    """
-    """
-
+    """ """

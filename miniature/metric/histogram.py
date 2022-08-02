@@ -4,14 +4,13 @@
 """
 
 import statistics
-from typing import Union
 from threading import RLock
+from typing import Union
 
 from miniature.metric.metric import Metric
 
 
 class HistogramBuffer:
-
     def __init__(self, size: int):
         """
 
@@ -37,7 +36,7 @@ class HistogramBuffer:
             self._index = self._index + 1 if self._index < self._size else 0
 
     def stats(self, percentiles: list = None) -> dict:
-        """ Get some stats
+        """Get some stats
 
         :param percentiles: list of percentiles
         :return:
@@ -50,7 +49,7 @@ class HistogramBuffer:
 
 
 class HistogramMetric(Metric):
-    """ A simple histogram metric class """
+    """A simple histogram metric class"""
 
     def __init__(self, metric_name: str, size: int = 100):
         """

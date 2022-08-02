@@ -7,33 +7,37 @@
 import argparse
 import logging
 
-from miniature.machinist.split import SplitMachinist
 from miniature.machinist.join import JoinMachinist
+from miniature.machinist.split import SplitMachinist
+from miniature.wind import Wind
 from miniature.xtce import Xtce
 
-logging.basicConfig(format='%(asctime)s %(message)s', level=logging.INFO)
+logging.basicConfig(format="%(asctime)s %(message)s", level=logging.INFO)
 
 
 def _load(file_name: str):
-    """ TODO """
+    """TODO"""
     with open(file_name, "r") as fp:
         return fp.read()
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('target', type=str, help='file or directory to split or join')
-    parser.add_argument('action', choices=['split', 'join', 'xtce'])
+    parser.add_argument("target", type=str, help="file or directory to split or join")
+    parser.add_argument("action", choices=["split", "join", "xtce", "wind"])
     args = parser.parse_args()
 
     match args.action:
-        case 'split':
+        case "split":
             SplitMachinist(args.target)
-        case 'join':
+        case "join":
             JoinMachinist(args.target)
-        case 'xtce':
+        case "xtce":
             source = _load(args.target)
             s = Xtce.from_string(source)
+        case "wind":
+            wind = Wind(args.target)
+            wind.df.write.parquet("people.parquet")
 
 
 if __name__ == "__main__":

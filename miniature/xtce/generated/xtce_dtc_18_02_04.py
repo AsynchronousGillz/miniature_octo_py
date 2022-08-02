@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import List, Optional, Union
+
 from xsdata.models.datatype import XmlDate, XmlDateTime, XmlDuration
 
 __NAMESPACE__ = "http://www.omg.org/spec/XTCE/20180204"
@@ -14,17 +15,18 @@ class AlgorithmTextType:
     The language for the algorithm is specified with the language
     attribute
     """
+
     value: str = field(
         default="",
         metadata={
             "required": True,
-        }
+        },
     )
     language: str = field(
         default="pseudo",
         metadata={
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -53,20 +55,21 @@ class AliasType:
         naming conventions.  It is also useful for capturing variable
         names in software, amongst other things.
     """
+
     name_space: Optional[str] = field(
         default=None,
         metadata={
             "name": "nameSpace",
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
     alias: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
 
 
@@ -86,31 +89,32 @@ class AncillaryDataType:
     :ivar href: Optional Uniform Resource Identifier for this
         characteristic, feature, or data.
     """
+
     value: str = field(
         default="",
         metadata={
             "required": True,
-        }
+        },
     )
     name: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
     mime_type: str = field(
         default="text/plain",
         metadata={
             "name": "mimeType",
             "type": "Attribute",
-        }
+        },
     )
     href: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -131,6 +135,7 @@ class ArgumentAssignmentType:
         time=xs:dateTime.  Supplied value must be within the ValidRange
         specified for the type.
     """
+
     argument_name: Optional[str] = field(
         default=None,
         metadata={
@@ -138,7 +143,7 @@ class ArgumentAssignmentType:
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
     argument_value: Optional[str] = field(
         default=None,
@@ -146,7 +151,7 @@ class ArgumentAssignmentType:
             "name": "argumentValue",
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
 
 
@@ -161,6 +166,7 @@ class ArgumentInstanceRefType:
     :ivar use_calibrated_value: Typically the calibrated/engineering
         value is used and that is the default.
     """
+
     argument_ref: Optional[str] = field(
         default=None,
         metadata={
@@ -168,14 +174,14 @@ class ArgumentInstanceRefType:
             "type": "Attribute",
             "required": True,
             "pattern": r"[^./:\[\] ]+",
-        }
+        },
     )
     use_calibrated_value: bool = field(
         default=True,
         metadata={
             "name": "useCalibratedValue",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -188,13 +194,14 @@ class AuthorSetType:
     :ivar author: Contains information about an author, maintainer, or
         data source regarding this document.
     """
+
     author: List[str] = field(
         default_factory=list,
         metadata={
             "name": "Author",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -219,6 +226,7 @@ class BasisType(Enum):
 
     See RateInStreamType.
     """
+
     PER_SECOND = "perSecond"
     PER_CONTAINER_UPDATE = "perContainerUpdate"
 
@@ -229,6 +237,7 @@ class BitOrderType(Enum):
 
     See DataEncodingType.
     """
+
     LEAST_SIGNIFICANT_BIT_FIRST = "leastSignificantBitFirst"
     MOST_SIGNIFICANT_BIT_FIRST = "mostSignificantBitFirst"
 
@@ -238,6 +247,7 @@ class ByteOrderCommonType(Enum):
     Common byte orderings: most significant byte first (also known as big
     endian) and least significant byte first (also known as little endian).
     """
+
     MOST_SIGNIFICANT_BYTE_FIRST = "mostSignificantByteFirst"
     LEAST_SIGNIFICANT_BYTE_FIRST = "leastSignificantByteFirst"
 
@@ -251,7 +261,7 @@ class ByteType:
             "type": "Attribute",
             "required": True,
             "min_inclusive": 0,
-        }
+        },
     )
 
 
@@ -261,6 +271,7 @@ class ChangeBasisType(Enum):
 
     Used by ChangeAlarmRangesType.
     """
+
     ABSOLUTE_CHANGE = "absoluteChange"
     PERCENTAGE_CHANGE = "percentageChange"
 
@@ -271,6 +282,7 @@ class ChangeSpanType(Enum):
 
     Used by ChangeAlarmRangesType.
     """
+
     CHANGE_PER_SECOND = "changePerSecond"
     CHANGE_PER_SAMPLE = "changePerSample"
 
@@ -283,12 +295,13 @@ class ChangeValueType:
 
     :ivar value: Value as a floating point number.
     """
+
     value: Optional[float] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
 
 
@@ -314,6 +327,7 @@ class ChecksumTypeName(Enum):
     :cvar DAMM:
     :cvar CUSTOM: Document a custom checksum algorithm
     """
+
     UNIX_SUM = "unix_sum"
     SUM8 = "sum8"
     SUM16 = "sum16"
@@ -334,6 +348,7 @@ class ComparisonOperatorsType(Enum):
     """
     Operators to use when testing a boolean condition for a validity check.
     """
+
     VALUE = "=="
     VALUE_1 = "!="
     VALUE_2 = "&lt;"
@@ -355,6 +370,7 @@ class ConcernLevelsType(Enum):
     cases where definiing "normal" is needed, refer to the specific
     alarm definition types.
     """
+
     NORMAL = "normal"
     WATCH = "watch"
     WARNING = "warning"
@@ -394,6 +410,7 @@ class ConsequenceLevelType(Enum):
         program will need to define the meaning of this value to their
         system.
     """
+
     NORMAL = "normal"
     VITAL = "vital"
     CRITICAL = "critical"
@@ -410,19 +427,20 @@ class ConstantType:
     constantName is a variable name in the algorithm to be executed.
     value is the value of the constant to be used.
     """
+
     constant_name: Optional[str] = field(
         default=None,
         metadata={
             "name": "constantName",
             "type": "Attribute",
-        }
+        },
     )
     value: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
 
 
@@ -433,6 +451,7 @@ class ContainerRefType:
 
     :ivar container_ref: name of container
     """
+
     container_ref: Optional[str] = field(
         default=None,
         metadata={
@@ -440,7 +459,7 @@ class ContainerRefType:
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
 
 
@@ -448,6 +467,7 @@ class EpochTimeEnumsType(Enum):
     """
     Union values of common epoch definitions for document convenience.
     """
+
     TAI = "TAI"
     J2000 = "J2000"
     UNIX = "UNIX"
@@ -461,13 +481,14 @@ class ExternalAlgorithmType:
     Multiple entries are provided so that the same database may be used
     for multiple implementation s
     """
+
     implementation_name: Optional[str] = field(
         default=None,
         metadata={
             "name": "implementationName",
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
     algorithm_location: Optional[str] = field(
         default=None,
@@ -475,7 +496,7 @@ class ExternalAlgorithmType:
             "name": "algorithmLocation",
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
 
 
@@ -522,6 +543,7 @@ class FloatEncodingSizeInBitsType(Enum):
         enumeration and the IEEE754_1985 enumeration are allowed in this
         case and the interpretation is the same.
     """
+
     VALUE_16 = 16
     VALUE_32 = 32
     VALUE_40 = 40
@@ -558,33 +580,34 @@ class FloatRangeType:
     :ivar max_exclusive: Maximum decimal/real number value excluding
         itself.
     """
+
     min_inclusive: Optional[float] = field(
         default=None,
         metadata={
             "name": "minInclusive",
             "type": "Attribute",
-        }
+        },
     )
     min_exclusive: Optional[float] = field(
         default=None,
         metadata={
             "name": "minExclusive",
             "type": "Attribute",
-        }
+        },
     )
     max_inclusive: Optional[float] = field(
         default=None,
         metadata={
             "name": "maxInclusive",
             "type": "Attribute",
-        }
+        },
     )
     max_exclusive: Optional[float] = field(
         default=None,
         metadata={
             "name": "maxExclusive",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -609,13 +632,14 @@ class HistorySetType:
     :ivar history: Contains a history record related to the evolution of
         this document.
     """
+
     history: List[str] = field(
         default_factory=list,
         metadata={
             "name": "History",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -638,19 +662,20 @@ class IntegerRangeType:
     :ivar min_inclusive: Minimum integer value including itself.
     :ivar max_inclusive: Maximum integer value including itself.
     """
+
     min_inclusive: Optional[int] = field(
         default=None,
         metadata={
             "name": "minInclusive",
             "type": "Attribute",
-        }
+        },
     )
     max_inclusive: Optional[int] = field(
         default=None,
         metadata={
             "name": "maxInclusive",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -661,13 +686,14 @@ class LeadingSizeType:
 
     SizeTag must be an unsigned Integer
     """
+
     size_in_bits_of_size_tag: int = field(
         default=16,
         metadata={
             "name": "sizeInBitsOfSizeTag",
             "type": "Attribute",
             "min_inclusive": 1,
-        }
+        },
     )
 
 
@@ -677,17 +703,18 @@ class LinearAdjustmentType:
     A slope and intercept may be applied to scale or shift the value of the
     parameter in the dynamic value.
     """
+
     slope: Optional[float] = field(
         default=None,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
     intercept: float = field(
         default=0.0,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -751,6 +778,7 @@ class MathOperatorsType(Enum):
     :cvar VALUE_19: Bitwise not operation (x1 x2 -- x1 ~ x2) The result
         of this can only be 0 or 1
     """
+
     VALUE = "+"
     VALUE_1 = "-"
     VALUE_2 = "*"
@@ -809,6 +837,7 @@ class MessageRefType:
 
     :ivar message_ref: name of message
     """
+
     message_ref: Optional[str] = field(
         default=None,
         metadata={
@@ -816,7 +845,7 @@ class MessageRefType:
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
 
 
@@ -829,13 +858,14 @@ class NoteSetType:
     :ivar note: Contains a program defined technical note regarding this
         document.
     """
+
     note: List[str] = field(
         default_factory=list,
         metadata={
             "name": "Note",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -857,6 +887,7 @@ class ParameterRefType:
     member of an array use the zero based bracket notation commonly used
     in languages like C, C++, and Java.
     """
+
     parameter_ref: Optional[str] = field(
         default=None,
         metadata={
@@ -864,7 +895,7 @@ class ParameterRefType:
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
 
 
@@ -896,27 +927,28 @@ class PhysicalAddressType:
         attributes, such as address size and address region starting
         location.  These are part of the spacecraft hardware properties.
     """
+
     sub_address: Optional["PhysicalAddressType"] = field(
         default=None,
         metadata={
             "name": "SubAddress",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     source_name: Optional[str] = field(
         default=None,
         metadata={
             "name": "sourceName",
             "type": "Attribute",
-        }
+        },
     )
     source_address: Optional[str] = field(
         default=None,
         metadata={
             "name": "sourceAddress",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -924,6 +956,7 @@ class RadixType(Enum):
     """
     Specifies the number base.
     """
+
     DECIMAL = "Decimal"
     HEXADECIMAL = "Hexadecimal"
     OCTAL = "Octal"
@@ -938,6 +971,7 @@ class RangeFormType(Enum):
     greater than the maximum.  Inside matches values between the minimum
     and maximum.
     """
+
     OUTSIDE = "outside"
     INSIDE = "inside"
 
@@ -953,6 +987,7 @@ class ReferenceLocationType(Enum):
     Entry. If going backwards (containerEnd and nextEntry) then, the
     location refers to the end of the entry.
     """
+
     CONTAINER_START = "containerStart"
     CONTAINER_END = "containerEnd"
     PREVIOUS_ENTRY = "previousEntry"
@@ -969,12 +1004,13 @@ class ServiceRefType:
     """
     A reference to a Service.
     """
+
     value: str = field(
         default="",
         metadata={
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
     service_ref: Optional[str] = field(
         default=None,
@@ -983,7 +1019,7 @@ class ServiceRefType:
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
 
 
@@ -1004,26 +1040,27 @@ class SplinePointType:
     :ivar calibrated: The engineering/calibrated value associated with
         the raw value for this point.
     """
+
     order: int = field(
         default=1,
         metadata={
             "type": "Attribute",
             "min_inclusive": 0,
-        }
+        },
     )
     raw: Optional[float] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
     calibrated: Optional[float] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
 
 
@@ -1034,6 +1071,7 @@ class StreamRefType:
 
     :ivar stream_ref: name of reference stream
     """
+
     stream_ref: Optional[str] = field(
         default=None,
         metadata={
@@ -1041,7 +1079,7 @@ class StreamRefType:
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
 
 
@@ -1076,6 +1114,7 @@ class StringEncodingType(Enum):
         represented as big endian.  Bits are not prepended with a Byte
         Order Mark.
     """
+
     US_ASCII = "US-ASCII"
     ISO_8859_1 = "ISO-8859-1"
     WINDOWS_1252 = "Windows-1252"
@@ -1099,27 +1138,28 @@ class SyncPatternType:
     :ivar mask_length_in_bits: truncate the mask from the left
     :ivar pattern_length_in_bits: truncate the pattern from the left
     """
+
     pattern: Optional[bytes] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "required": True,
             "format": "base16",
-        }
+        },
     )
     bit_location_from_start_of_container: int = field(
         default=0,
         metadata={
             "name": "bitLocationFromStartOfContainer",
             "type": "Attribute",
-        }
+        },
     )
     mask: Optional[bytes] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "format": "base16",
-        }
+        },
     )
     mask_length_in_bits: Optional[int] = field(
         default=None,
@@ -1127,7 +1167,7 @@ class SyncPatternType:
             "name": "maskLengthInBits",
             "type": "Attribute",
             "min_inclusive": 1,
-        }
+        },
     )
     pattern_length_in_bits: Optional[int] = field(
         default=None,
@@ -1136,7 +1176,7 @@ class SyncPatternType:
             "type": "Attribute",
             "required": True,
             "min_inclusive": 1,
-        }
+        },
     )
 
 
@@ -1150,6 +1190,7 @@ class TelemetryDataSourceType(Enum):
     A ground Parameter is one that is generated by an asset which is not
     the spacecraft.
     """
+
     TELEMETERED = "telemetered"
     DERIVED = "derived"
     CONSTANT = "constant"
@@ -1168,12 +1209,13 @@ class TermType:
         expression.  Should negative exponents be required, use a Math
         Calibrator style of definition for this type.
     """
+
     coefficient: Optional[float] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
     exponent: Optional[int] = field(
         default=None,
@@ -1181,7 +1223,7 @@ class TermType:
             "type": "Attribute",
             "required": True,
             "min_inclusive": 0,
-        }
+        },
     )
 
 
@@ -1189,6 +1231,7 @@ class TimeAssociationUnitType(Enum):
     """
     Time units the time association decimal value is in.
     """
+
     SI_NANOSECOND = "si_nanosecond"
     SI_MICROSECOND = "si_microsecond"
     SI_MILLSECOND = "si_millsecond"
@@ -1203,6 +1246,7 @@ class TimeUnitsType(Enum):
 
     days, months, years have obvoius ambiguity and should be avoided
     """
+
     SECONDS = "seconds"
     PICO_SECONDS = "picoSeconds"
     DAYS = "days"
@@ -1220,6 +1264,7 @@ class UnitFormType(Enum):
     Optionally specify if this information pertains to something other than the
     calibrated/engineering value.
     """
+
     CALIBRATED = "calibrated"
     UNCALIBRATED = "uncalibrated"
     RAW = "raw"
@@ -1251,33 +1296,34 @@ class ValueEnumerationType:
         can be specified for this enumeration label to provide extended
         information if desired.
     """
+
     value: Optional[int] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
     max_value: Optional[int] = field(
         default=None,
         metadata={
             "name": "maxValue",
             "type": "Attribute",
-        }
+        },
     )
     label: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
     short_description: Optional[str] = field(
         default=None,
         metadata={
             "name": "shortDescription",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -1285,6 +1331,7 @@ class VerifierEnumerationType(Enum):
     """
     An enumerated list of verifier types.
     """
+
     RELEASE = "release"
     TRANSFERRED_TO_RANGE = "transferredToRange"
     SENT_FROM_RANGE = "sentFromRange"
@@ -1305,6 +1352,7 @@ class AliasSetType:
     :ivar alias: An alternate name, ID number, and sometimes flight
         software variable name in the code for this item.
     """
+
     alias: List[AliasType] = field(
         default_factory=list,
         metadata={
@@ -1312,7 +1360,7 @@ class AliasSetType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -1327,6 +1375,7 @@ class AncillaryDataSetType:
     :ivar ancillary_data: Optional list of AncillaryData elements
         associated with this item.
     """
+
     ancillary_data: List[AncillaryDataType] = field(
         default_factory=list,
         metadata={
@@ -1334,7 +1383,7 @@ class AncillaryDataSetType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -1354,6 +1403,7 @@ class ArgumentAssignmentListType:
         inheriting from a more general MetaCommand by restricting the
         specific values of otherwise general arguments.
     """
+
     argument_assignment: List[ArgumentAssignmentType] = field(
         default_factory=list,
         metadata={
@@ -1361,7 +1411,7 @@ class ArgumentAssignmentListType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -1381,6 +1431,7 @@ class Crctype:
     specified to reverse the bit order in the incoming data and/or the
     result.
     """
+
     class Meta:
         name = "CRCType"
 
@@ -1392,7 +1443,7 @@ class Crctype:
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
             "format": "base16",
-        }
+        },
     )
     init_remainder: Optional[bytes] = field(
         default=None,
@@ -1401,7 +1452,7 @@ class Crctype:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "format": "base16",
-        }
+        },
     )
     final_xor: Optional[bytes] = field(
         default=None,
@@ -1410,28 +1461,28 @@ class Crctype:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "format": "base16",
-        }
+        },
     )
     width: Optional[int] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "min_inclusive": 1,
-        }
+        },
     )
     reflect_data: bool = field(
         default=False,
         metadata={
             "name": "reflectData",
             "type": "Attribute",
-        }
+        },
     )
     reflect_remainder: bool = field(
         default=False,
         metadata={
             "name": "reflectRemainder",
             "type": "Attribute",
-        }
+        },
     )
     bits_from_reference: Optional[int] = field(
         default=None,
@@ -1439,13 +1490,13 @@ class Crctype:
             "name": "bitsFromReference",
             "type": "Attribute",
             "min_inclusive": 0,
-        }
+        },
     )
     reference: ReferencePointType = field(
         default=ReferencePointType.START,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -1456,12 +1507,13 @@ class CheckWindowType:
 
     See CheckWindowAlgorithmsType.
     """
+
     time_to_start_checking: Optional[XmlDuration] = field(
         default=None,
         metadata={
             "name": "timeToStartChecking",
             "type": "Attribute",
-        }
+        },
     )
     time_to_stop_checking: Optional[XmlDuration] = field(
         default=None,
@@ -1469,14 +1521,14 @@ class CheckWindowType:
             "name": "timeToStopChecking",
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
     time_window_is_relative_to: TimeWindowIsRelativeToType = field(
         default=TimeWindowIsRelativeToType.TIME_LAST_VERIFIER_PASSED,
         metadata={
             "name": "timeWindowIsRelativeTo",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -1489,7 +1541,7 @@ class ContainerRefSetType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -1508,13 +1560,14 @@ class EnumerationAlarmLevelType:
     :ivar enumeration_label: The enumeration label is the
         engineering/calibrated value for enumerated types.
     """
+
     alarm_level: Optional[ConcernLevelsType] = field(
         default=None,
         metadata={
             "name": "alarmLevel",
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
     enumeration_label: Optional[str] = field(
         default=None,
@@ -1522,7 +1575,7 @@ class EnumerationAlarmLevelType:
             "name": "enumerationLabel",
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
 
 
@@ -1535,7 +1588,7 @@ class EnumerationListType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -1548,7 +1601,7 @@ class ExternalAlgorithmSetType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -1557,20 +1610,21 @@ class FlagType:
     """
     The pattern of bits used to look for frame synchronization.
     """
+
     flag_size_in_bits: int = field(
         default=6,
         metadata={
             "name": "flagSizeInBits",
             "type": "Attribute",
             "min_inclusive": 1,
-        }
+        },
     )
     flag_bit_type: FlagBitType = field(
         default=FlagBitType.ONES,
         metadata={
             "name": "flagBitType",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -1600,13 +1654,14 @@ class HeaderType:
         the state of this document in the evolution of the project using
         it.
     """
+
     author_set: Optional[AuthorSetType] = field(
         default=None,
         metadata={
             "name": "AuthorSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     note_set: Optional[NoteSetType] = field(
         default=None,
@@ -1614,7 +1669,7 @@ class HeaderType:
             "name": "NoteSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     history_set: Optional[HistorySetType] = field(
         default=None,
@@ -1622,32 +1677,32 @@ class HeaderType:
             "name": "HistorySet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     version: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
     date: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
     classification: str = field(
         default="NotClassified",
         metadata={
             "type": "Attribute",
-        }
+        },
     )
     classification_instructions: Optional[str] = field(
         default=None,
         metadata={
             "name": "classificationInstructions",
             "type": "Attribute",
-        }
+        },
     )
     validation_status: Optional[ValidationStatusType] = field(
         default=None,
@@ -1655,7 +1710,7 @@ class HeaderType:
             "name": "validationStatus",
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
 
 
@@ -1681,33 +1736,34 @@ class InterlockType:
     :ivar suspendable: A flag that indicates that under special
         circumstances, this Interlock can be suspended.
     """
+
     scope_to_space_system: Optional[str] = field(
         default=None,
         metadata={
             "name": "scopeToSpaceSystem",
             "type": "Attribute",
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
     verification_to_wait_for: VerifierEnumerationType = field(
         default=VerifierEnumerationType.COMPLETE,
         metadata={
             "name": "verificationToWaitFor",
             "type": "Attribute",
-        }
+        },
     )
     verification_progress_percentage: Optional[float] = field(
         default=None,
         metadata={
             "name": "verificationProgressPercentage",
             "type": "Attribute",
-        }
+        },
     )
     suspendable: bool = field(
         default=False,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -1720,7 +1776,7 @@ class MessageRefSetType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -1741,18 +1797,19 @@ class MultiRangeType(FloatRangeType):
         "outside" and is the default.
     :ivar level: The level of concern for this alarm definition.
     """
+
     range_form: RangeFormType = field(
         default=RangeFormType.OUTSIDE,
         metadata={
             "name": "rangeForm",
             "type": "Attribute",
-        }
+        },
     )
     level: Optional[ConcernLevelsType] = field(
         default=None,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -1823,12 +1880,13 @@ class NumberFormatType:
         the implementation/platform.  The default is "normal" for the
         traditional notation.
     """
+
     number_base: RadixType = field(
         default=RadixType.DECIMAL,
         metadata={
             "name": "numberBase",
             "type": "Attribute",
-        }
+        },
     )
     minimum_fraction_digits: int = field(
         default=0,
@@ -1836,7 +1894,7 @@ class NumberFormatType:
             "name": "minimumFractionDigits",
             "type": "Attribute",
             "min_inclusive": 0,
-        }
+        },
     )
     maximum_fraction_digits: Optional[int] = field(
         default=None,
@@ -1844,7 +1902,7 @@ class NumberFormatType:
             "name": "maximumFractionDigits",
             "type": "Attribute",
             "min_inclusive": 0,
-        }
+        },
     )
     minimum_integer_digits: int = field(
         default=1,
@@ -1852,7 +1910,7 @@ class NumberFormatType:
             "name": "minimumIntegerDigits",
             "type": "Attribute",
             "min_inclusive": 0,
-        }
+        },
     )
     maximum_integer_digits: Optional[int] = field(
         default=None,
@@ -1860,48 +1918,48 @@ class NumberFormatType:
             "name": "maximumIntegerDigits",
             "type": "Attribute",
             "min_inclusive": 0,
-        }
+        },
     )
     negative_suffix: str = field(
         default="",
         metadata={
             "name": "negativeSuffix",
             "type": "Attribute",
-        }
+        },
     )
     positive_suffix: str = field(
         default="",
         metadata={
             "name": "positiveSuffix",
             "type": "Attribute",
-        }
+        },
     )
     negative_prefix: str = field(
         default="-",
         metadata={
             "name": "negativePrefix",
             "type": "Attribute",
-        }
+        },
     )
     positive_prefix: str = field(
         default="",
         metadata={
             "name": "positivePrefix",
             "type": "Attribute",
-        }
+        },
     )
     show_thousands_grouping: bool = field(
         default=False,
         metadata={
             "name": "showThousandsGrouping",
             "type": "Attribute",
-        }
+        },
     )
     notation: FloatingPointNotationType = field(
         default=FloatingPointNotationType.NORMAL,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -1915,6 +1973,7 @@ class OnContainerUpdateTriggerType(BaseTriggerType):
     :ivar container_ref: Reference to the Container whose update/receipt
         triggers this algorithm to evaluate.
     """
+
     container_ref: Optional[str] = field(
         default=None,
         metadata={
@@ -1922,7 +1981,7 @@ class OnContainerUpdateTriggerType(BaseTriggerType):
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
 
 
@@ -1936,6 +1995,7 @@ class OnParameterUpdateTriggerType(BaseTriggerType):
     :ivar parameter_ref: Reference to the Parameter whose update
         triggers this algorithm to evaluate.
     """
+
     parameter_ref: Optional[str] = field(
         default=None,
         metadata={
@@ -1943,7 +2003,7 @@ class OnParameterUpdateTriggerType(BaseTriggerType):
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
 
 
@@ -1956,13 +2016,14 @@ class OnPeriodicRateTriggerType(BaseTriggerType):
     :ivar fire_rate_in_seconds: The periodic rate in time in which this
         algorithm is triggered to evaluate.
     """
+
     fire_rate_in_seconds: Optional[float] = field(
         default=None,
         metadata={
             "name": "fireRateInSeconds",
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
 
 
@@ -1975,12 +2036,13 @@ class OutputParameterRefType(ParameterRefType):
     parameter that will be updated by this algorithm.  outputName is an
     optional "friendly" name for the output parameter.
     """
+
     output_name: Optional[str] = field(
         default=None,
         metadata={
             "name": "outputName",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -1994,18 +2056,19 @@ class ParameterInstanceRefType(ParameterRefType):
     count means use the current value of the parameter or the first
     value in a container.
     """
+
     instance: int = field(
         default=0,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
     use_calibrated_value: bool = field(
         default=True,
         metadata={
             "name": "useCalibratedValue",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -2015,20 +2078,21 @@ class ParameterToSuspendAlarmsOnType(ParameterRefType):
     Will suspend all Alarms associated with this Parameter for the given
     suspense time after the given verifier.
     """
+
     suspense_time: Optional[XmlDuration] = field(
         default=None,
         metadata={
             "name": "suspenseTime",
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
     verifier_to_trigger_on: VerifierEnumerationType = field(
         default=VerifierEnumerationType.RELEASE,
         metadata={
             "name": "verifierToTriggerOn",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -2037,6 +2101,7 @@ class ParameterValueChangeType:
     """
     A parameter change in value or specified delta change in value.
     """
+
     parameter_ref: Optional[ParameterRefType] = field(
         default=None,
         metadata={
@@ -2044,7 +2109,7 @@ class ParameterValueChangeType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
     change: Optional[ChangeValueType] = field(
         default=None,
@@ -2053,7 +2118,7 @@ class ParameterValueChangeType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
 
 
@@ -2062,12 +2127,13 @@ class ParityType:
     """
     Bit position starts with 'zero'.
     """
+
     type: Optional[ParityFormType] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
     bits_from_reference: Optional[int] = field(
         default=None,
@@ -2076,13 +2142,13 @@ class ParityType:
             "type": "Attribute",
             "required": True,
             "min_inclusive": 0,
-        }
+        },
     )
     reference: ReferencePointType = field(
         default=ReferencePointType.START,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -2099,13 +2165,14 @@ class PhysicalAddressSetType:
         location. Contains the address (channel information) required to
         process the spacecraft telemetry streams
     """
+
     physical_address: List[PhysicalAddressType] = field(
         default_factory=list,
         metadata={
             "name": "PhysicalAddress",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -2127,25 +2194,26 @@ class RateInStreamType:
     :ivar maximum_value: The maximum rate for the specified basis for
         which this container should appear in the stream.
     """
+
     basis: BasisType = field(
         default=BasisType.PER_SECOND,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
     minimum_value: Optional[float] = field(
         default=None,
         metadata={
             "name": "minimumValue",
             "type": "Attribute",
-        }
+        },
     )
     maximum_value: Optional[float] = field(
         default=None,
         metadata={
             "name": "maximumValue",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -2161,27 +2229,28 @@ class SignificanceType:
     :ivar reason_for_warning:
     :ivar consequence_level:
     """
+
     space_system_at_risk: Optional[str] = field(
         default=None,
         metadata={
             "name": "spaceSystemAtRisk",
             "type": "Attribute",
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
     reason_for_warning: Optional[str] = field(
         default=None,
         metadata={
             "name": "reasonForWarning",
             "type": "Attribute",
-        }
+        },
     )
     consequence_level: ConsequenceLevelType = field(
         default=ConsequenceLevelType.NORMAL,
         metadata={
             "name": "consequenceLevel",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -2199,6 +2268,7 @@ class SizeInBitsType:
         Pascal strings.  If a LeadingSize is specified, then the
         TerminationChar element does not have a functional meaning.
     """
+
     fixed: Optional["SizeInBitsType.Fixed"] = field(
         default=None,
         metadata={
@@ -2206,7 +2276,7 @@ class SizeInBitsType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
     termination_char: Optional[bytes] = field(
         default=None,
@@ -2215,7 +2285,7 @@ class SizeInBitsType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "format": "base16",
-        }
+        },
     )
     leading_size: Optional[LeadingSizeType] = field(
         default=None,
@@ -2223,7 +2293,7 @@ class SizeInBitsType:
             "name": "LeadingSize",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
     @dataclass
@@ -2234,6 +2304,7 @@ class SizeInBitsType:
             also the size in bits for this parameter when it appears in
             a container.
         """
+
         fixed_value: Optional[int] = field(
             default=None,
             metadata={
@@ -2242,7 +2313,7 @@ class SizeInBitsType:
                 "namespace": "http://www.omg.org/spec/XTCE/20180204",
                 "required": True,
                 "min_inclusive": 1,
-            }
+            },
         )
 
 
@@ -2255,13 +2326,14 @@ class StringAlarmLevelType:
     implementation of the regular expression syntax is not specified in
     the schema at this time.  See StringAlarmListType.
     """
+
     alarm_level: Optional[ConcernLevelsType] = field(
         default=None,
         metadata={
             "name": "alarmLevel",
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
     match_pattern: Optional[str] = field(
         default=None,
@@ -2269,7 +2341,7 @@ class StringAlarmLevelType:
             "name": "matchPattern",
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
 
 
@@ -2307,29 +2379,30 @@ class UnitType:
         raw/uncalibrated value.
     :ivar content:
     """
+
     power: float = field(
         default=1.0,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
     factor: str = field(
         default="1",
         metadata={
             "type": "Attribute",
-        }
+        },
     )
     description: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
     form: UnitFormType = field(
         default=UnitFormType.CALIBRATED,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
     content: List[object] = field(
         default_factory=list,
@@ -2337,7 +2410,7 @@ class UnitType:
             "type": "Wildcard",
             "namespace": "##any",
             "mixed": True,
-        }
+        },
     )
 
 
@@ -2362,6 +2435,7 @@ class ValidFloatRangeSetType:
         recommendation, the valid range is specified in
         engineering/calibrated values, although this can be adjusted.
     """
+
     valid_range: List[FloatRangeType] = field(
         default_factory=list,
         metadata={
@@ -2369,14 +2443,14 @@ class ValidFloatRangeSetType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
     valid_range_applies_to_calibrated: bool = field(
         default=True,
         metadata={
             "name": "validRangeAppliesToCalibrated",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -2401,6 +2475,7 @@ class ValidIntegerRangeSetType:
         recommendation, the valid range is specified in
         engineering/calibrated values, although this can be adjusted.
     """
+
     valid_range: List[IntegerRangeType] = field(
         default_factory=list,
         metadata={
@@ -2408,14 +2483,14 @@ class ValidIntegerRangeSetType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
     valid_range_applies_to_calibrated: bool = field(
         default=True,
         metadata={
             "name": "validRangeAppliesToCalibrated",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -2437,6 +2512,7 @@ class ArgumentComparisonCheckType(BaseConditionsType):
         an initial value given in the data type. Values are calibrated
         unless there is an option to override it.
     """
+
     parameter_instance_ref: List[ParameterInstanceRefType] = field(
         default_factory=list,
         metadata={
@@ -2445,7 +2521,7 @@ class ArgumentComparisonCheckType(BaseConditionsType):
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "max_occurs": 2,
             "sequential": True,
-        }
+        },
     )
     argument_instance_ref: List[ArgumentInstanceRefType] = field(
         default_factory=list,
@@ -2455,7 +2531,7 @@ class ArgumentComparisonCheckType(BaseConditionsType):
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "max_occurs": 2,
             "sequential": True,
-        }
+        },
     )
     comparison_operator: Optional[ComparisonOperatorsType] = field(
         default=None,
@@ -2464,7 +2540,7 @@ class ArgumentComparisonCheckType(BaseConditionsType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
     value: Optional[str] = field(
         default=None,
@@ -2472,7 +2548,7 @@ class ArgumentComparisonCheckType(BaseConditionsType):
             "name": "Value",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -2499,13 +2575,14 @@ class ArgumentComparisonType:
         an initial value given in the data type. Values are calibrated
         unless there is an option to override it.
     """
+
     parameter_instance_ref: Optional[ParameterInstanceRefType] = field(
         default=None,
         metadata={
             "name": "ParameterInstanceRef",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     argument_instance_ref: Optional[ArgumentInstanceRefType] = field(
         default=None,
@@ -2513,21 +2590,21 @@ class ArgumentComparisonType:
             "name": "ArgumentInstanceRef",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     comparison_operator: ComparisonOperatorsType = field(
         default=ComparisonOperatorsType.VALUE,
         metadata={
             "name": "comparisonOperator",
             "type": "Attribute",
-        }
+        },
     )
     value: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
 
 
@@ -2544,13 +2621,14 @@ class ArgumentDynamicValueType:
         scale or shift the value selected from the argument or
         parameter.
     """
+
     argument_instance_ref: Optional[ArgumentInstanceRefType] = field(
         default=None,
         metadata={
             "name": "ArgumentInstanceRef",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     parameter_instance_ref: Optional[ParameterInstanceRefType] = field(
         default=None,
@@ -2558,7 +2636,7 @@ class ArgumentDynamicValueType:
             "name": "ParameterInstanceRef",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     linear_adjustment: Optional[LinearAdjustmentType] = field(
         default=None,
@@ -2566,7 +2644,7 @@ class ArgumentDynamicValueType:
             "name": "LinearAdjustment",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -2584,26 +2662,27 @@ class BaseAlarmType:
     :ivar short_description: An optional brief description of this alarm
         definition.
     """
+
     ancillary_data_set: Optional[AncillaryDataSetType] = field(
         default=None,
         metadata={
             "name": "AncillaryDataSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     name: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
     short_description: Optional[str] = field(
         default=None,
         metadata={
             "name": "shortDescription",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -2622,26 +2701,27 @@ class BaseCalibratorType:
     :ivar short_description: Optional description for this
         calibrator/algorithm
     """
+
     ancillary_data_set: Optional[AncillaryDataSetType] = field(
         default=None,
         metadata={
             "name": "AncillaryDataSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     name: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
     short_description: Optional[str] = field(
         default=None,
         metadata={
             "name": "shortDescription",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -2661,13 +2741,14 @@ class BaseMetaCommandType:
     :ivar meta_command_ref: Reference to the MetaCommand definition that
         this MetaCommand extends.
     """
+
     argument_assignment_list: Optional[ArgumentAssignmentListType] = field(
         default=None,
         metadata={
             "name": "ArgumentAssignmentList",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     meta_command_ref: Optional[str] = field(
         default=None,
@@ -2676,7 +2757,7 @@ class BaseMetaCommandType:
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
 
 
@@ -2698,6 +2779,7 @@ class ComparisonCheckType(BaseConditionsType):
         Takes precedence over an initial value given in the data type.
         Values are calibrated unless there is an option to override it.
     """
+
     parameter_instance_ref: List[ParameterInstanceRefType] = field(
         default_factory=list,
         metadata={
@@ -2705,7 +2787,7 @@ class ComparisonCheckType(BaseConditionsType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "max_occurs": 2,
-        }
+        },
     )
     comparison_operator: Optional[ComparisonOperatorsType] = field(
         default=None,
@@ -2714,7 +2796,7 @@ class ComparisonCheckType(BaseConditionsType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
     value: Optional[str] = field(
         default=None,
@@ -2722,7 +2804,7 @@ class ComparisonCheckType(BaseConditionsType):
             "name": "Value",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -2746,19 +2828,20 @@ class ComparisonType(ParameterInstanceRefType):
         relative time= xs:duration; absolute time=xs:dateTime.  Supplied
         value must be within the ValidRange specified for the type.
     """
+
     comparison_operator: ComparisonOperatorsType = field(
         default=ComparisonOperatorsType.VALUE,
         metadata={
             "name": "comparisonOperator",
             "type": "Attribute",
-        }
+        },
     )
     value: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
 
 
@@ -2783,13 +2866,14 @@ class DescriptionType:
         explanation of this item.  It is recommended that the short
         description be kept under 80 characters in length.
     """
+
     long_description: Optional[str] = field(
         default=None,
         metadata={
             "name": "LongDescription",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     alias_set: Optional[AliasSetType] = field(
         default=None,
@@ -2797,7 +2881,7 @@ class DescriptionType:
             "name": "AliasSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     ancillary_data_set: Optional[AncillaryDataSetType] = field(
         default=None,
@@ -2805,14 +2889,14 @@ class DescriptionType:
             "name": "AncillaryDataSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     short_description: Optional[str] = field(
         default=None,
         metadata={
             "name": "shortDescription",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -2831,6 +2915,7 @@ class DynamicValueType:
         scale or shift the value selected from the argument or
         parameter.
     """
+
     parameter_instance_ref: Optional[ParameterInstanceRefType] = field(
         default=None,
         metadata={
@@ -2838,7 +2923,7 @@ class DynamicValueType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
     linear_adjustment: Optional[LinearAdjustmentType] = field(
         default=None,
@@ -2846,7 +2931,7 @@ class DynamicValueType:
             "name": "LinearAdjustment",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -2857,6 +2942,7 @@ class EnumerationAlarmListType:
         label where the label is engineer/calibrated value. Note that
         labels may represent multiple raw/uncalbrated values.
     """
+
     enumeration_alarm: List[EnumerationAlarmLevelType] = field(
         default_factory=list,
         metadata={
@@ -2864,7 +2950,7 @@ class EnumerationAlarmListType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -2877,12 +2963,13 @@ class InputParameterInstanceRefType(ParameterInstanceRefType):
     will be used in this algorithm.  inputName is an optional "friendly"
     name for the input parameter.
     """
+
     input_name: Optional[str] = field(
         default=None,
         metadata={
             "name": "inputName",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -2893,13 +2980,14 @@ class MetaCommandStepType:
 
     See MetaCommandStepListType and NameReferenceType.
     """
+
     argument_assigment_list: Optional[ArgumentAssignmentListType] = field(
         default=None,
         metadata={
             "name": "ArgumentAssigmentList",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     meta_command_ref: Optional[str] = field(
         default=None,
@@ -2908,7 +2996,7 @@ class MetaCommandStepType:
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
 
 
@@ -2921,13 +3009,14 @@ class OutputSetType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
 @dataclass
 class ParametersToSuspendAlarmsOnSetType:
     """Sometimes it is necessary to suspend alarms - particularly 'change' alarms for commands that will change the value of a Parameter"""
+
     parameter_to_suspend_alarms_on: List[ParameterToSuspendAlarmsOnType] = field(
         default_factory=list,
         metadata={
@@ -2935,7 +3024,7 @@ class ParametersToSuspendAlarmsOnSetType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -2954,6 +3043,7 @@ class RateInStreamWithStreamNameType(RateInStreamType):
     :ivar stream_ref: Reference to a named stream for which this rate
         specification applies.
     """
+
     stream_ref: Optional[str] = field(
         default=None,
         metadata={
@@ -2961,7 +3051,7 @@ class RateInStreamWithStreamNameType(RateInStreamType):
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
 
 
@@ -2980,13 +3070,14 @@ class ReferenceTimeType:
         common epochs.  The enumerations are TAI (used by CCSDS and
         others), J2000, UNIX (also known as POSIX), and GPS.
     """
+
     offset_from: Optional[ParameterInstanceRefType] = field(
         default=None,
         metadata={
             "name": "OffsetFrom",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     epoch: Optional[Union[XmlDate, XmlDateTime, EpochTimeEnumsType]] = field(
         default=None,
@@ -2994,7 +3085,7 @@ class ReferenceTimeType:
             "name": "Epoch",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -3006,6 +3097,7 @@ class StringAlarmListType:
     Evaluate the alarms in list order. The first to evaluate to true
     takes precedence.  See StringAlarmLevelType.
     """
+
     string_alarm: List[StringAlarmLevelType] = field(
         default_factory=list,
         metadata={
@@ -3013,7 +3105,7 @@ class StringAlarmListType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -3038,24 +3130,25 @@ class TimeAssociationType(ParameterInstanceRefType):
     :ivar unit: Specify the units the offset is in, the default is
         si_second.
     """
+
     interpolate_time: bool = field(
         default=True,
         metadata={
             "name": "interpolateTime",
             "type": "Attribute",
-        }
+        },
     )
     offset: Optional[float] = field(
         default=None,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
     unit: TimeAssociationUnitType = field(
         default=TimeAssociationUnitType.SI_SECOND,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -3066,6 +3159,7 @@ class ToStringType:
         should be represented in engineering/calibrated form.  The
         defaults reflect the most common form.
     """
+
     number_format: Optional[NumberFormatType] = field(
         default=None,
         metadata={
@@ -3073,7 +3167,7 @@ class ToStringType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
 
 
@@ -3099,13 +3193,14 @@ class TriggerSetType:
         flooding the implementation.  The default is once per second.
         Setting to 0 results in no maximum.
     """
+
     on_parameter_update_trigger: List[OnParameterUpdateTriggerType] = field(
         default_factory=list,
         metadata={
             "name": "OnParameterUpdateTrigger",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     on_container_update_trigger: List[OnContainerUpdateTriggerType] = field(
         default_factory=list,
@@ -3113,7 +3208,7 @@ class TriggerSetType:
             "name": "OnContainerUpdateTrigger",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     on_periodic_rate_trigger: List[OnPeriodicRateTriggerType] = field(
         default_factory=list,
@@ -3121,13 +3216,13 @@ class TriggerSetType:
             "name": "OnPeriodicRateTrigger",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     name: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
     trigger_rate: int = field(
         default=1,
@@ -3135,7 +3230,7 @@ class TriggerSetType:
             "name": "triggerRate",
             "type": "Attribute",
             "min_inclusive": 0,
-        }
+        },
     )
 
 
@@ -3150,13 +3245,14 @@ class UnitSetType:
         a unit.  The attributes are optional because different programs
         use this element in different ways, depending on vendor support.
     """
+
     unit: List[UnitType] = field(
         default_factory=list,
         metadata={
             "name": "Unit",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -3179,6 +3275,7 @@ class AlarmMultiRangesType(BaseAlarmType):
         ranges is the level of the alarm. Range values are in calibrated
         engineering units. See FloatRangeType.
     """
+
     range: List[MultiRangeType] = field(
         default_factory=list,
         metadata={
@@ -3186,7 +3283,7 @@ class AlarmMultiRangesType(BaseAlarmType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -3219,13 +3316,14 @@ class AlarmRangesType(BaseAlarmType):
         +distress +warning +watch. The most common form used is
         "outside" and is the default.
     """
+
     watch_range: Optional[FloatRangeType] = field(
         default=None,
         metadata={
             "name": "WatchRange",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     warning_range: Optional[FloatRangeType] = field(
         default=None,
@@ -3233,7 +3331,7 @@ class AlarmRangesType(BaseAlarmType):
             "name": "WarningRange",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     distress_range: Optional[FloatRangeType] = field(
         default=None,
@@ -3241,7 +3339,7 @@ class AlarmRangesType(BaseAlarmType):
             "name": "DistressRange",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     critical_range: Optional[FloatRangeType] = field(
         default=None,
@@ -3249,7 +3347,7 @@ class AlarmRangesType(BaseAlarmType):
             "name": "CriticalRange",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     severe_range: Optional[FloatRangeType] = field(
         default=None,
@@ -3257,14 +3355,14 @@ class AlarmRangesType(BaseAlarmType):
             "name": "SevereRange",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     range_form: RangeFormType = field(
         default=RangeFormType.OUTSIDE,
         metadata={
             "name": "rangeForm",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -3276,6 +3374,7 @@ class ArgumentComparisonListType:
     :ivar comparison: List of Comparison elements must all be true for
         the comparison to evaluate to true.
     """
+
     comparison: List[ArgumentComparisonType] = field(
         default_factory=list,
         metadata={
@@ -3283,7 +3382,7 @@ class ArgumentComparisonListType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -3297,13 +3396,14 @@ class ArgumentInputSetType:
     :ivar input_argument_instance_ref: Reference an argument to serve as
         an input to the algorithm.
     """
+
     input_parameter_instance_ref: List[InputParameterInstanceRefType] = field(
         default_factory=list,
         metadata={
             "name": "InputParameterInstanceRef",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     input_argument_instance_ref: List[ArgumentInstanceRefType] = field(
         default_factory=list,
@@ -3311,7 +3411,7 @@ class ArgumentInputSetType:
             "name": "InputArgumentInstanceRef",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -3328,6 +3428,7 @@ class ArgumentOredConditionsType(BaseConditionsType):
         are more flexible and the and/or for multiple checks can be
         specified.
     """
+
     class Meta:
         name = "ArgumentORedConditionsType"
 
@@ -3338,7 +3439,7 @@ class ArgumentOredConditionsType(BaseConditionsType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 2,
-        }
+        },
     )
     anded_conditions: List["ArgumentAndedConditionsType"] = field(
         default_factory=list,
@@ -3347,7 +3448,7 @@ class ArgumentOredConditionsType(BaseConditionsType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 2,
-        }
+        },
     )
 
 
@@ -3359,6 +3460,7 @@ class ComparisonListType:
     :ivar comparison: List of Comparison elements must all be true for
         the comparison to evaluate to true.
     """
+
     comparison: List[ComparisonType] = field(
         default_factory=list,
         metadata={
@@ -3366,7 +3468,7 @@ class ComparisonListType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -3378,7 +3480,7 @@ class InputSetType:
             "name": "InputParameterInstanceRef",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     constant: List[ConstantType] = field(
         default_factory=list,
@@ -3386,7 +3488,7 @@ class InputSetType:
             "name": "Constant",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -3410,13 +3512,14 @@ class MathOperationCalibratorType(BaseCalibratorType):
         reference the last received/assigned value of any Parameter in
         this math operation.
     """
+
     value_operand: List[str] = field(
         default_factory=list,
         metadata={
             "name": "ValueOperand",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     this_parameter_operand: List[str] = field(
         default_factory=list,
@@ -3424,7 +3527,7 @@ class MathOperationCalibratorType(BaseCalibratorType):
             "name": "ThisParameterOperand",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     operator: List[MathOperatorsType] = field(
         default_factory=list,
@@ -3432,7 +3535,7 @@ class MathOperationCalibratorType(BaseCalibratorType):
             "name": "Operator",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     parameter_instance_ref_operand: List[ParameterInstanceRefType] = field(
         default_factory=list,
@@ -3440,7 +3543,7 @@ class MathOperationCalibratorType(BaseCalibratorType):
             "name": "ParameterInstanceRefOperand",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -3456,6 +3559,7 @@ class MetaCommandStepListType:
     :ivar meta_command_step: A MetaCommand with specific specified
         argument values to include in the BlockMetaCommand.
     """
+
     meta_command_step: List[MetaCommandStepType] = field(
         default_factory=list,
         metadata={
@@ -3463,7 +3567,7 @@ class MetaCommandStepListType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -3479,13 +3583,14 @@ class NameDescriptionType(DescriptionType):
     :ivar name: The name of this defined item.  See NameType for
         restriction information.
     """
+
     name: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "required": True,
             "pattern": r"[^./:\[\] ]+",
-        }
+        },
     )
 
 
@@ -3503,6 +3608,7 @@ class OredConditionsType(BaseConditionsType):
         ComparisonList element except that the parameters used are more
         flexible and the and/or for multiple checks can be specified.
     """
+
     class Meta:
         name = "ORedConditionsType"
 
@@ -3513,7 +3619,7 @@ class OredConditionsType(BaseConditionsType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 2,
-        }
+        },
     )
     anded_conditions: List["AndedConditionsType"] = field(
         default_factory=list,
@@ -3522,7 +3628,7 @@ class OredConditionsType(BaseConditionsType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 2,
-        }
+        },
     )
 
 
@@ -3535,12 +3641,13 @@ class OptionalNameDescriptionType(DescriptionType):
     :ivar name: Optional name of this defined item.  See NameType for
         restriction information.
     """
+
     name: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "pattern": r"[^./:\[\] ]+",
-        }
+        },
     )
 
 
@@ -3558,6 +3665,7 @@ class PercentCompleteType:
         value. Anything more complex and a DynamicValue with a
         CustomAlgorithm may be used.
     """
+
     fixed_value: Optional[float] = field(
         default=None,
         metadata={
@@ -3566,7 +3674,7 @@ class PercentCompleteType:
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_inclusive": 0.0,
             "max_inclusive": 100.0,
-        }
+        },
     )
     dynamic_value: Optional[DynamicValueType] = field(
         default=None,
@@ -3574,7 +3682,7 @@ class PercentCompleteType:
             "name": "DynamicValue",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -3591,6 +3699,7 @@ class PolynomialCalibratorType(BaseCalibratorType):
 
     :ivar term: A single term in the polynomial function.
     """
+
     term: List[TermType] = field(
         default_factory=list,
         metadata={
@@ -3598,7 +3707,7 @@ class PolynomialCalibratorType(BaseCalibratorType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -3611,7 +3720,7 @@ class RateInStreamSetType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -3637,6 +3746,7 @@ class SplineCalibratorType(BaseCalibratorType):
         and the associated interpolation to extend outside of the range
         of the points in the spline function.
     """
+
     spline_point: List[SplinePointType] = field(
         default_factory=list,
         metadata={
@@ -3644,20 +3754,20 @@ class SplineCalibratorType(BaseCalibratorType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 2,
-        }
+        },
     )
     order: int = field(
         default=1,
         metadata={
             "type": "Attribute",
             "min_inclusive": 0,
-        }
+        },
     )
     extrapolate: bool = field(
         default=False,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -3675,6 +3785,7 @@ class AndedConditionsType(BaseConditionsType):
         ComparisonList element except that the parameters used are more
         flexible and the and/or for multiple checks can be specified.
     """
+
     class Meta:
         name = "ANDedConditionsType"
 
@@ -3685,7 +3796,7 @@ class AndedConditionsType(BaseConditionsType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 2,
-        }
+        },
     )
     ored_conditions: List[OredConditionsType] = field(
         default_factory=list,
@@ -3694,7 +3805,7 @@ class AndedConditionsType(BaseConditionsType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 2,
-        }
+        },
     )
 
 
@@ -3711,6 +3822,7 @@ class ArgumentAndedConditionsType(BaseConditionsType):
         are more flexible and the and/or for multiple checks can be
         specified.
     """
+
     class Meta:
         name = "ArgumentANDedConditionsType"
 
@@ -3721,7 +3833,7 @@ class ArgumentAndedConditionsType(BaseConditionsType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 2,
-        }
+        },
     )
     ored_conditions: List[ArgumentOredConditionsType] = field(
         default_factory=list,
@@ -3730,7 +3842,7 @@ class ArgumentAndedConditionsType(BaseConditionsType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 2,
-        }
+        },
     )
 
 
@@ -3758,6 +3870,7 @@ class ArgumentType(NameDescriptionType):
         an initial value given in the data type. Values are calibrated
         unless there is an option to override it.
     """
+
     argument_type_ref: Optional[str] = field(
         default=None,
         metadata={
@@ -3765,14 +3878,14 @@ class ArgumentType(NameDescriptionType):
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
     initial_value: Optional[str] = field(
         default=None,
         metadata={
             "name": "initialValue",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -3787,6 +3900,7 @@ class ArrayDataTypeType(NameDescriptionType):
     :ivar array_type_ref: Reference to the data type that represents the
         type of the elements for this array.
     """
+
     array_type_ref: Optional[str] = field(
         default=None,
         metadata={
@@ -3794,7 +3908,7 @@ class ArrayDataTypeType(NameDescriptionType):
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
 
 
@@ -3809,6 +3923,7 @@ class BlockMetaCommandType(NameDescriptionType):
     :ivar meta_command_step_list: List of the MetaCommands to include in
         this BlockMetaCommand.
     """
+
     meta_command_step_list: Optional[MetaCommandStepListType] = field(
         default=None,
         metadata={
@@ -3816,7 +3931,7 @@ class BlockMetaCommandType(NameDescriptionType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
 
 
@@ -3834,13 +3949,14 @@ class CalibratorType(BaseCalibratorType):
     :ivar math_operation_calibrator: Describes a calibrator in the form
         of a user/program/implementation defined function
     """
+
     spline_calibrator: Optional[SplineCalibratorType] = field(
         default=None,
         metadata={
             "name": "SplineCalibrator",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     polynomial_calibrator: Optional[PolynomialCalibratorType] = field(
         default=None,
@@ -3848,7 +3964,7 @@ class CalibratorType(BaseCalibratorType):
             "name": "PolynomialCalibrator",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     math_operation_calibrator: Optional[MathOperationCalibratorType] = field(
         default=None,
@@ -3856,7 +3972,7 @@ class CalibratorType(BaseCalibratorType):
             "name": "MathOperationCalibrator",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -3888,19 +4004,20 @@ class ChangeAlarmRangesType(AlarmRangesType):
     of each range and sampled value it taken to evaluate the alarm. See
     NumericAlarmType.
     """
+
     change_type: ChangeSpanType = field(
         default=ChangeSpanType.CHANGE_PER_SECOND,
         metadata={
             "name": "changeType",
             "type": "Attribute",
-        }
+        },
     )
     change_basis: ChangeBasisType = field(
         default=ChangeBasisType.ABSOLUTE_CHANGE,
         metadata={
             "name": "changeBasis",
             "type": "Attribute",
-        }
+        },
     )
     span_of_interest_in_samples: int = field(
         default=1,
@@ -3908,14 +4025,14 @@ class ChangeAlarmRangesType(AlarmRangesType):
             "name": "spanOfInterestInSamples",
             "type": "Attribute",
             "min_inclusive": 1,
-        }
+        },
     )
     span_of_interest_in_seconds: float = field(
         default=0.0,
         metadata={
             "name": "spanOfInterestInSeconds",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -3959,6 +4076,7 @@ class MemberType(NameDescriptionType):
         Initial values for string types, may include C language style
         (\\n, \\t, \\", \\\\, etc.) escape sequences.
     """
+
     type_ref: Optional[str] = field(
         default=None,
         metadata={
@@ -3966,14 +4084,14 @@ class MemberType(NameDescriptionType):
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
     initial_value: Optional[str] = field(
         default=None,
         metadata={
             "name": "initialValue",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -3983,6 +4101,7 @@ class PcmstreamType(NameDescriptionType):
     A PCM Stream Type is the high level definition for all Pulse Code Modulated
     (PCM) (i.e., binary) streams.
     """
+
     class Meta:
         name = "PCMStreamType"
 
@@ -3991,20 +4110,20 @@ class PcmstreamType(NameDescriptionType):
         metadata={
             "name": "bitRateInBPS",
             "type": "Attribute",
-        }
+        },
     )
     pcm_type: Pcmtype = field(
         default=Pcmtype.NRZL,
         metadata={
             "name": "pcmType",
             "type": "Attribute",
-        }
+        },
     )
     inverted: bool = field(
         default=False,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -4014,13 +4133,14 @@ class ServiceType(NameDescriptionType):
     Holds a set of services, logical groups of containers  OR messages (not
     both).
     """
+
     message_ref_set: Optional[MessageRefSetType] = field(
         default=None,
         metadata={
             "name": "MessageRefSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     container_ref_set: Optional[ContainerRefSetType] = field(
         default=None,
@@ -4028,7 +4148,7 @@ class ServiceType(NameDescriptionType):
             "name": "ContainerRefSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -4042,13 +4162,14 @@ class SimpleAlgorithmType(NameDescriptionType):
     Multiple external algorithms are possible because XTCE documents may
     be used across multiple ground systems.
     """
+
     algorithm_text: Optional[AlgorithmTextType] = field(
         default=None,
         metadata={
             "name": "AlgorithmText",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     external_algorithm_set: Optional[ExternalAlgorithmSetType] = field(
         default=None,
@@ -4056,7 +4177,7 @@ class SimpleAlgorithmType(NameDescriptionType):
             "name": "ExternalAlgorithmSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -4067,7 +4188,7 @@ class TimeAlarmRangesType(AlarmRangesType):
         metadata={
             "name": "timeUnits",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -4087,13 +4208,14 @@ class ArgumentBooleanExpressionType:
         ComparisonList element except that the arguments/parameters used
         are more flexible.
     """
+
     condition: Optional[ArgumentComparisonCheckType] = field(
         default=None,
         metadata={
             "name": "Condition",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     anded_conditions: Optional[ArgumentAndedConditionsType] = field(
         default=None,
@@ -4101,7 +4223,7 @@ class ArgumentBooleanExpressionType:
             "name": "ANDedConditions",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     ored_conditions: Optional[ArgumentOredConditionsType] = field(
         default=None,
@@ -4109,7 +4231,7 @@ class ArgumentBooleanExpressionType:
             "name": "ORedConditions",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -4122,13 +4244,14 @@ class ArgumentInputAlgorithmType(SimpleAlgorithmType):
         parameters that should be made available as input arguments to
         the algorithm.
     """
+
     input_set: Optional[ArgumentInputSetType] = field(
         default=None,
         metadata={
             "name": "InputSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -4141,6 +4264,7 @@ class ArgumentListType:
         Arguments are local to the MetaCommand, BlockMetaCommand, and
         those that inherit from the definition.
     """
+
     argument: List[ArgumentType] = field(
         default_factory=list,
         metadata={
@@ -4148,7 +4272,7 @@ class ArgumentListType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -4167,13 +4291,14 @@ class BooleanExpressionType:
         ComparisonList element except that the parameters used are more
         flexible.
     """
+
     condition: Optional[ComparisonCheckType] = field(
         default=None,
         metadata={
             "name": "Condition",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     anded_conditions: Optional[AndedConditionsType] = field(
         default=None,
@@ -4181,7 +4306,7 @@ class BooleanExpressionType:
             "name": "ANDedConditions",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     ored_conditions: Optional[OredConditionsType] = field(
         default=None,
@@ -4189,7 +4314,7 @@ class BooleanExpressionType:
             "name": "ORedConditions",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -4206,13 +4331,14 @@ class FrameStreamType(PcmstreamType):
     :ivar stream_ref: This is a reference to a connecting stream - say a
         custom stream.
     """
+
     container_ref: Optional[ContainerRefType] = field(
         default=None,
         metadata={
             "name": "ContainerRef",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     service_ref: Optional[ServiceRefType] = field(
         default=None,
@@ -4220,7 +4346,7 @@ class FrameStreamType(PcmstreamType):
             "name": "ServiceRef",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     stream_ref: Optional[StreamRefType] = field(
         default=None,
@@ -4228,7 +4354,7 @@ class FrameStreamType(PcmstreamType):
             "name": "StreamRef",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -4240,13 +4366,14 @@ class InputAlgorithmType(SimpleAlgorithmType):
     :ivar input_set: The InputSet describes the list of parameters that
         should be made available as input arguments to the algorithm.
     """
+
     input_set: Optional[InputSetType] = field(
         default=None,
         metadata={
             "name": "InputSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -4258,6 +4385,7 @@ class MemberListType:
     In this case the members are assued to be added sequentially (in the
     order listed here) into the Container.
     """
+
     member: List[MemberType] = field(
         default_factory=list,
         metadata={
@@ -4265,7 +4393,7 @@ class MemberListType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -4289,13 +4417,14 @@ class ParameterToSetType(ParameterRefType):
         when the command have all verifications complete.  See
         VerifierEnumerationType.
     """
+
     derivation: Optional[MathOperationType] = field(
         default=None,
         metadata={
             "name": "Derivation",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     new_value: Optional[str] = field(
         default=None,
@@ -4303,14 +4432,14 @@ class ParameterToSetType(ParameterRefType):
             "name": "NewValue",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     set_on_verification: VerifierEnumerationType = field(
         default=VerifierEnumerationType.COMPLETE,
         metadata={
             "name": "setOnVerification",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -4319,6 +4448,7 @@ class ServiceSetType:
     """
     A service is a logical grouping of container and/or messages.
     """
+
     service: List[ServiceType] = field(
         default_factory=list,
         metadata={
@@ -4326,7 +4456,7 @@ class ServiceSetType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -4339,7 +4469,7 @@ class TriggeredMathOperationType(MathOperationType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
     output_parameter_ref: Optional[str] = field(
         default=None,
@@ -4348,7 +4478,7 @@ class TriggeredMathOperationType(MathOperationType):
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
 
 
@@ -4371,6 +4501,7 @@ class AggregateDataType(NameDescriptionType):
     :ivar member_list: Ordered list of the members of the
         aggregate/structure.  Members are contiguous.
     """
+
     member_list: Optional[MemberListType] = field(
         default=None,
         metadata={
@@ -4378,7 +4509,7 @@ class AggregateDataType(NameDescriptionType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
 
 
@@ -4398,13 +4529,14 @@ class ArgumentMatchCriteriaType:
     :ivar custom_algorithm: An escape to an externally defined
         algorithm.
     """
+
     comparison: Optional[ArgumentComparisonType] = field(
         default=None,
         metadata={
             "name": "Comparison",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     comparison_list: Optional[ArgumentComparisonListType] = field(
         default=None,
@@ -4412,7 +4544,7 @@ class ArgumentMatchCriteriaType:
             "name": "ComparisonList",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     boolean_expression: Optional[ArgumentBooleanExpressionType] = field(
         default=None,
@@ -4420,7 +4552,7 @@ class ArgumentMatchCriteriaType:
             "name": "BooleanExpression",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     custom_algorithm: Optional[ArgumentInputAlgorithmType] = field(
         default=None,
@@ -4428,7 +4560,7 @@ class ArgumentMatchCriteriaType:
             "name": "CustomAlgorithm",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -4439,13 +4571,14 @@ class AutoInvertType:
 
     In some cases this will require an external algorithm
     """
+
     invert_algorithm: Optional[InputAlgorithmType] = field(
         default=None,
         metadata={
             "name": "InvertAlgorithm",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     bad_frames_to_auto_invert: int = field(
         default=1024,
@@ -4453,7 +4586,7 @@ class AutoInvertType:
             "name": "badFramesToAutoInvert",
             "type": "Attribute",
             "min_inclusive": 1,
-        }
+        },
     )
 
 
@@ -4464,6 +4597,7 @@ class CheckWindowAlgorithmsType:
 
     See CommandVerifierType.
     """
+
     start_check: Optional[InputAlgorithmType] = field(
         default=None,
         metadata={
@@ -4471,7 +4605,7 @@ class CheckWindowAlgorithmsType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
     stop_time: Optional[InputAlgorithmType] = field(
         default=None,
@@ -4480,7 +4614,7 @@ class CheckWindowAlgorithmsType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
 
 
@@ -4496,13 +4630,14 @@ class ChecksumType:
         chosen, InputAlgorithm must be set.
     :ivar hash_size_in_bits:
     """
+
     input_algorithm: Optional[InputAlgorithmType] = field(
         default=None,
         metadata={
             "name": "InputAlgorithm",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     bits_from_reference: Optional[int] = field(
         default=None,
@@ -4510,20 +4645,20 @@ class ChecksumType:
             "name": "bitsFromReference",
             "type": "Attribute",
             "min_inclusive": 0,
-        }
+        },
     )
     reference: ReferencePointType = field(
         default=ReferencePointType.START,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
     name: Optional[ChecksumTypeName] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
     hash_size_in_bits: Optional[int] = field(
         default=None,
@@ -4531,7 +4666,7 @@ class ChecksumType:
             "name": "hashSizeInBits",
             "type": "Attribute",
             "min_inclusive": 1,
-        }
+        },
     )
 
 
@@ -4544,6 +4679,7 @@ class CustomAlarmType(BaseAlarmType):
 
     :ivar input_algorithm: Algorithm returns a boolean.
     """
+
     input_algorithm: Optional[InputAlgorithmType] = field(
         default=None,
         metadata={
@@ -4551,7 +4687,7 @@ class CustomAlarmType(BaseAlarmType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
 
 
@@ -4560,19 +4696,20 @@ class InputOutputAlgorithmType(InputAlgorithmType):
     """
     A set of labeled outputs are added to the SimpleInputAlgorithmType.
     """
+
     output_set: Optional[OutputSetType] = field(
         default=None,
         metadata={
             "name": "OutputSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     thread: bool = field(
         default=False,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -4593,13 +4730,14 @@ class MatchCriteriaType:
     :ivar custom_algorithm: An escape to an externally defined
         algorithm.
     """
+
     comparison: Optional[ComparisonType] = field(
         default=None,
         metadata={
             "name": "Comparison",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     comparison_list: Optional[ComparisonListType] = field(
         default=None,
@@ -4607,7 +4745,7 @@ class MatchCriteriaType:
             "name": "ComparisonList",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     boolean_expression: Optional[BooleanExpressionType] = field(
         default=None,
@@ -4615,7 +4753,7 @@ class MatchCriteriaType:
             "name": "BooleanExpression",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     custom_algorithm: Optional[InputAlgorithmType] = field(
         default=None,
@@ -4623,7 +4761,7 @@ class MatchCriteriaType:
             "name": "CustomAlgorithm",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -4637,6 +4775,7 @@ class MathAlgorithmType(NameDescriptionType):
     :ivar math_operation: The contents of the Math Operation as an
         algorithm definition in RPN.  See TriggeredMathOperationType.
     """
+
     math_operation: Optional[TriggeredMathOperationType] = field(
         default=None,
         metadata={
@@ -4644,7 +4783,7 @@ class MathAlgorithmType(NameDescriptionType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
 
 
@@ -4655,6 +4794,7 @@ class ParameterToSetListType:
 
     Appended to the Base Command list
     """
+
     parameter_to_set: List[ParameterToSetType] = field(
         default_factory=list,
         metadata={
@@ -4662,7 +4802,7 @@ class ParameterToSetListType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -4722,13 +4862,14 @@ class AlarmConditionsType:
     :ivar severe_alarm: An alarm state of highest concern.  Considered
         to be above the most commonly used Critical level.
     """
+
     watch_alarm: Optional[MatchCriteriaType] = field(
         default=None,
         metadata={
             "name": "WatchAlarm",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     warning_alarm: Optional[MatchCriteriaType] = field(
         default=None,
@@ -4736,7 +4877,7 @@ class AlarmConditionsType:
             "name": "WarningAlarm",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     distress_alarm: Optional[MatchCriteriaType] = field(
         default=None,
@@ -4744,7 +4885,7 @@ class AlarmConditionsType:
             "name": "DistressAlarm",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     critical_alarm: Optional[MatchCriteriaType] = field(
         default=None,
@@ -4752,7 +4893,7 @@ class AlarmConditionsType:
             "name": "CriticalAlarm",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     severe_alarm: Optional[MatchCriteriaType] = field(
         default=None,
@@ -4760,7 +4901,7 @@ class AlarmConditionsType:
             "name": "SevereAlarm",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -4772,12 +4913,13 @@ class ArgumentDiscreteLookupType(ArgumentMatchCriteriaType):
 
     :ivar value: Value to use when the lookup conditions are true.
     """
+
     value: Optional[int] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
 
 
@@ -4808,13 +4950,14 @@ class CommandVerifierType(OptionalNameDescriptionType):
     :ivar check_window_algorithms: Define a time window algorithmically
         for verification.
     """
+
     comparison_list: Optional[ComparisonListType] = field(
         default=None,
         metadata={
             "name": "ComparisonList",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     container_ref: Optional[ContainerRefType] = field(
         default=None,
@@ -4822,7 +4965,7 @@ class CommandVerifierType(OptionalNameDescriptionType):
             "name": "ContainerRef",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     parameter_value_change: Optional[ParameterValueChangeType] = field(
         default=None,
@@ -4830,7 +4973,7 @@ class CommandVerifierType(OptionalNameDescriptionType):
             "name": "ParameterValueChange",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     custom_algorithm: Optional[InputAlgorithmType] = field(
         default=None,
@@ -4838,7 +4981,7 @@ class CommandVerifierType(OptionalNameDescriptionType):
             "name": "CustomAlgorithm",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     boolean_expression: Optional[BooleanExpressionType] = field(
         default=None,
@@ -4846,7 +4989,7 @@ class CommandVerifierType(OptionalNameDescriptionType):
             "name": "BooleanExpression",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     comparison: Optional[ComparisonType] = field(
         default=None,
@@ -4854,7 +4997,7 @@ class CommandVerifierType(OptionalNameDescriptionType):
             "name": "Comparison",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     check_window: Optional[CheckWindowType] = field(
         default=None,
@@ -4862,7 +5005,7 @@ class CommandVerifierType(OptionalNameDescriptionType):
             "name": "CheckWindow",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     check_window_algorithms: Optional[CheckWindowAlgorithmsType] = field(
         default=None,
@@ -4870,7 +5013,7 @@ class CommandVerifierType(OptionalNameDescriptionType):
             "name": "CheckWindowAlgorithms",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -4895,6 +5038,7 @@ class CustomStreamType(PcmstreamType):
     :ivar encoded_stream_ref:
     :ivar decoded_stream_ref:
     """
+
     encoding_algorithm: Optional[InputAlgorithmType] = field(
         default=None,
         metadata={
@@ -4902,7 +5046,7 @@ class CustomStreamType(PcmstreamType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
     decoding_algorithm: Optional[InputOutputAlgorithmType] = field(
         default=None,
@@ -4911,7 +5055,7 @@ class CustomStreamType(PcmstreamType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
     encoded_stream_ref: Optional[str] = field(
         default=None,
@@ -4920,7 +5064,7 @@ class CustomStreamType(PcmstreamType):
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
     decoded_stream_ref: Optional[str] = field(
         default=None,
@@ -4929,7 +5073,7 @@ class CustomStreamType(PcmstreamType):
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
 
 
@@ -4941,12 +5085,13 @@ class DiscreteLookupType(MatchCriteriaType):
 
     :ivar value: Value to use when the lookup conditions are true.
     """
+
     value: Optional[int] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
 
 
@@ -4955,13 +5100,14 @@ class ErrorDetectCorrectType:
     """
     Describe error detection/correction algorithm.
     """
+
     checksum: Optional[ChecksumType] = field(
         default=None,
         metadata={
             "name": "Checksum",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     crc: Optional[Crctype] = field(
         default=None,
@@ -4969,7 +5115,7 @@ class ErrorDetectCorrectType:
             "name": "CRC",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     parity: Optional[ParityType] = field(
         default=None,
@@ -4977,7 +5123,7 @@ class ErrorDetectCorrectType:
             "name": "Parity",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -4994,13 +5140,14 @@ class InputOutputTriggerAlgorithmType(InputOutputAlgorithmType):
         algorithm is triggered by the same container, the lowest
         priority algorithm should be calculated first.
     """
+
     trigger_set: Optional[TriggerSetType] = field(
         default=None,
         metadata={
             "name": "TriggerSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     trigger_container: Optional[str] = field(
         default=None,
@@ -5008,13 +5155,13 @@ class InputOutputTriggerAlgorithmType(InputOutputAlgorithmType):
             "name": "triggerContainer",
             "type": "Attribute",
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
     priority: Optional[int] = field(
         default=None,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -5026,6 +5173,7 @@ class MessageType(NameDescriptionType):
         that will describe an entire packet/minor frame or chunk of
         telemetry.
     """
+
     match_criteria: Optional[MatchCriteriaType] = field(
         default=None,
         metadata={
@@ -5033,7 +5181,7 @@ class MessageType(NameDescriptionType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
     container_ref: Optional[ContainerRefType] = field(
         default=None,
@@ -5042,7 +5190,7 @@ class MessageType(NameDescriptionType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
 
 
@@ -5082,13 +5230,14 @@ class ParameterPropertiesType:
         or when the system has a reset to revert to initial/default
         values.
     """
+
     system_name: Optional[str] = field(
         default=None,
         metadata={
             "name": "SystemName",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     validity_condition: Optional[MatchCriteriaType] = field(
         default=None,
@@ -5096,7 +5245,7 @@ class ParameterPropertiesType:
             "name": "ValidityCondition",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     physical_address_set: Optional[PhysicalAddressSetType] = field(
         default=None,
@@ -5104,7 +5253,7 @@ class ParameterPropertiesType:
             "name": "PhysicalAddressSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     time_association: Optional[TimeAssociationType] = field(
         default=None,
@@ -5112,27 +5261,27 @@ class ParameterPropertiesType:
             "name": "TimeAssociation",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     data_source: Optional[TelemetryDataSourceType] = field(
         default=None,
         metadata={
             "name": "dataSource",
             "type": "Attribute",
-        }
+        },
     )
     read_only: bool = field(
         default=False,
         metadata={
             "name": "readOnly",
             "type": "Attribute",
-        }
+        },
     )
     persistence: bool = field(
         default=True,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -5150,13 +5299,14 @@ class RestrictionCriteriaType(MatchCriteriaType):
     :ivar next_container: Reference to the named container that must
         follow this container in the stream sequence.
     """
+
     next_container: Optional[ContainerRefType] = field(
         default=None,
         metadata={
             "name": "NextContainer",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -5182,13 +5332,14 @@ class SyncStrategyType:
     :ivar max_bit_errors_in_sync_pattern: Maximum number of bit errors
         in the sync pattern (marker).
     """
+
     auto_invert: Optional[AutoInvertType] = field(
         default=None,
         metadata={
             "name": "AutoInvert",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     verify_to_lock_good_frames: int = field(
         default=4,
@@ -5196,7 +5347,7 @@ class SyncStrategyType:
             "name": "verifyToLockGoodFrames",
             "type": "Attribute",
             "min_inclusive": 0,
-        }
+        },
     )
     check_to_lock_good_frames: int = field(
         default=1,
@@ -5204,7 +5355,7 @@ class SyncStrategyType:
             "name": "checkToLockGoodFrames",
             "type": "Attribute",
             "min_inclusive": 0,
-        }
+        },
     )
     max_bit_errors_in_sync_pattern: int = field(
         default=0,
@@ -5212,7 +5363,7 @@ class SyncStrategyType:
             "name": "maxBitErrorsInSyncPattern",
             "type": "Attribute",
             "min_inclusive": 0,
-        }
+        },
     )
 
 
@@ -5227,18 +5378,19 @@ class TransmissionConstraintType(MatchCriteriaType):
     :ivar suspendable: Indicates whether the constraints for a Command
         may be suspended.
     """
+
     time_out: Optional[XmlDuration] = field(
         default=None,
         metadata={
             "name": "timeOut",
             "type": "Attribute",
-        }
+        },
     )
     suspendable: bool = field(
         default=False,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -5273,13 +5425,14 @@ class AlarmType(BaseAlarmType):
         alarm state. If this attribute is not specified, it is treated
         as being equal to minViolations (symmetric).
     """
+
     alarm_conditions: Optional[AlarmConditionsType] = field(
         default=None,
         metadata={
             "name": "AlarmConditions",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     custom_alarm: Optional[CustomAlarmType] = field(
         default=None,
@@ -5287,7 +5440,7 @@ class AlarmType(BaseAlarmType):
             "name": "CustomAlarm",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     min_violations: int = field(
         default=1,
@@ -5295,7 +5448,7 @@ class AlarmType(BaseAlarmType):
             "name": "minViolations",
             "type": "Attribute",
             "min_inclusive": 1,
-        }
+        },
     )
     min_conformance: Optional[int] = field(
         default=None,
@@ -5303,7 +5456,7 @@ class AlarmType(BaseAlarmType):
             "name": "minConformance",
             "type": "Attribute",
             "min_inclusive": 1,
-        }
+        },
     )
 
 
@@ -5312,13 +5465,14 @@ class AlgorithmSetType:
     """
     An unordered collection of algorithms.
     """
+
     custom_algorithm: List[InputOutputTriggerAlgorithmType] = field(
         default_factory=list,
         metadata={
             "name": "CustomAlgorithm",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     math_algorithm: List[MathAlgorithmType] = field(
         default_factory=list,
@@ -5326,7 +5480,7 @@ class AlgorithmSetType:
             "name": "MathAlgorithm",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -5339,6 +5493,7 @@ class ArgumentDiscreteLookupListType:
     :ivar discrete_lookup: Describe a lookup condition set using
         discrete values from arguments and/or parameters.
     """
+
     discrete_lookup: List[ArgumentDiscreteLookupType] = field(
         default_factory=list,
         metadata={
@@ -5346,7 +5501,7 @@ class ArgumentDiscreteLookupListType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -5367,13 +5522,14 @@ class BaseContainerType:
     :ivar container_ref: Reference to the container that this container
         extends.
     """
+
     restriction_criteria: Optional[RestrictionCriteriaType] = field(
         default=None,
         metadata={
             "name": "RestrictionCriteria",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     container_ref: Optional[str] = field(
         default=None,
@@ -5382,7 +5538,7 @@ class BaseContainerType:
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
 
 
@@ -5392,13 +5548,14 @@ class CompleteVerifierType(CommandVerifierType):
     A possible set of verifiers that all must be true for the command be
     considered completed.
     """
+
     return_parm_ref: Optional[ParameterRefType] = field(
         default=None,
         metadata={
             "name": "ReturnParmRef",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -5408,6 +5565,7 @@ class ContextCalibratorType:
 
     Context calibrators overide Default calibrators
     """
+
     context_match: Optional[ContextMatchType] = field(
         default=None,
         metadata={
@@ -5415,7 +5573,7 @@ class ContextCalibratorType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
     calibrator: Optional[CalibratorType] = field(
         default=None,
@@ -5424,7 +5582,7 @@ class ContextCalibratorType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
 
 
@@ -5441,6 +5599,7 @@ class ContextSignificanceType:
     :ivar significance: Describe the signficance of this MetaCommand
         definition.  See SignificanceType.
     """
+
     context_match: Optional[ContextMatchType] = field(
         default=None,
         metadata={
@@ -5448,7 +5607,7 @@ class ContextSignificanceType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
     significance: Optional[SignificanceType] = field(
         default=None,
@@ -5457,7 +5616,7 @@ class ContextSignificanceType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
 
 
@@ -5468,20 +5627,21 @@ class DataEncodingType:
 
     (e.g. a spacecraft)
     """
+
     error_detect_correct: Optional[ErrorDetectCorrectType] = field(
         default=None,
         metadata={
             "name": "ErrorDetectCorrect",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     bit_order: BitOrderType = field(
         default=BitOrderType.MOST_SIGNIFICANT_BIT_FIRST,
         metadata={
             "name": "bitOrder",
             "type": "Attribute",
-        }
+        },
     )
     byte_order: Union[ByteOrderCommonType, str] = field(
         default=ByteOrderCommonType.MOST_SIGNIFICANT_BYTE_FIRST,
@@ -5489,7 +5649,7 @@ class DataEncodingType:
             "name": "byteOrder",
             "type": "Attribute",
             "pattern": r"(0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15)(,(0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15))*",
-        }
+        },
     )
 
 
@@ -5505,6 +5665,7 @@ class DiscreteLookupListType:
     :ivar discrete_lookup: Describe a lookup condition set using
         discrete values from parameters.
     """
+
     discrete_lookup: List[DiscreteLookupType] = field(
         default_factory=list,
         metadata={
@@ -5512,7 +5673,7 @@ class DiscreteLookupListType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -5524,13 +5685,14 @@ class ExecutionVerifierType(CommandVerifierType):
     progressed either as a fixed value or an (possibly scaled)
     ParameterInstance value.
     """
+
     percent_complete: Optional[PercentCompleteType] = field(
         default=None,
         metadata={
             "name": "PercentComplete",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -5540,13 +5702,14 @@ class FailedVerifierType(CommandVerifierType):
 
     timeToWait is how long to wait for the FailedVerifier to test true.
     """
+
     return_parm_ref: Optional[ParameterRefType] = field(
         default=None,
         metadata={
             "name": "ReturnParmRef",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -5560,6 +5723,7 @@ class FixedFrameSyncStrategyType(SyncStrategyType):
     :ivar sync_pattern: The pattern of bits used to look for frame
         synchronization.  See SyncPatternType.
     """
+
     sync_pattern: Optional[SyncPatternType] = field(
         default=None,
         metadata={
@@ -5567,7 +5731,7 @@ class FixedFrameSyncStrategyType(SyncStrategyType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
 
 
@@ -5580,7 +5744,7 @@ class MessageSetType(OptionalNameDescriptionType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -5614,13 +5778,14 @@ class ParameterType(NameDescriptionType):
         an initial value given in the data type. Values are calibrated
         unless there is an option to override it.
     """
+
     parameter_properties: Optional[ParameterPropertiesType] = field(
         default=None,
         metadata={
             "name": "ParameterProperties",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     parameter_type_ref: Optional[str] = field(
         default=None,
@@ -5629,14 +5794,14 @@ class ParameterType(NameDescriptionType):
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
     initial_value: Optional[str] = field(
         default=None,
         metadata={
             "name": "initialValue",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -5681,6 +5846,7 @@ class TransmissionConstraintListType:
 
     Constraints are checked in order.
     """
+
     transmission_constraint: List[TransmissionConstraintType] = field(
         default_factory=list,
         metadata={
@@ -5688,7 +5854,7 @@ class TransmissionConstraintListType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -5701,7 +5867,7 @@ class VariableFrameSyncStrategyType(SyncStrategyType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
 
 
@@ -5717,13 +5883,14 @@ class ArgumentIntegerValueType:
         instance of an argument or parameter and selecting a specified
         value based on tests of the value of that argument or parameter.
     """
+
     fixed_value: Optional[int] = field(
         default=None,
         metadata={
             "name": "FixedValue",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     dynamic_value: Optional[ArgumentDynamicValueType] = field(
         default=None,
@@ -5731,7 +5898,7 @@ class ArgumentIntegerValueType:
             "name": "DynamicValue",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     discrete_lookup_list: Optional[ArgumentDiscreteLookupListType] = field(
         default=None,
@@ -5739,7 +5906,7 @@ class ArgumentIntegerValueType:
             "name": "DiscreteLookupList",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -5766,13 +5933,14 @@ class ArgumentVariableStringType:
         data type so that the implementation can reserve/allocate enough
         memory to capture all reported instances of the string.
     """
+
     dynamic_value: Optional[ArgumentDynamicValueType] = field(
         default=None,
         metadata={
             "name": "DynamicValue",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     discrete_lookup_list: Optional[ArgumentDiscreteLookupListType] = field(
         default=None,
@@ -5780,7 +5948,7 @@ class ArgumentVariableStringType:
             "name": "DiscreteLookupList",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     leading_size: Optional[LeadingSizeType] = field(
         default=None,
@@ -5788,7 +5956,7 @@ class ArgumentVariableStringType:
             "name": "LeadingSize",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     termination_char: Optional[bytes] = field(
         default=None,
@@ -5797,7 +5965,7 @@ class ArgumentVariableStringType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "format": "base16",
-        }
+        },
     )
     max_size_in_bits: Optional[int] = field(
         default=None,
@@ -5806,7 +5974,7 @@ class ArgumentVariableStringType:
             "type": "Attribute",
             "required": True,
             "min_inclusive": 1,
-        }
+        },
     )
 
 
@@ -5827,7 +5995,7 @@ class BinaryContextAlarmType(AlarmType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
 
 
@@ -5852,6 +6020,7 @@ class ContextCalibratorListType:
         for the calibrator, the default calibrator is overridden, if it
         exists.
     """
+
     context_calibrator: List[ContextCalibratorType] = field(
         default_factory=list,
         metadata={
@@ -5859,7 +6028,7 @@ class ContextCalibratorListType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -5877,6 +6046,7 @@ class ContextSignificanceListType:
         matching a context value.  See ContextMatchType and
         SignificanceType.
     """
+
     context_significance: List[ContextSignificanceType] = field(
         default_factory=list,
         metadata={
@@ -5884,7 +6054,7 @@ class ContextSignificanceListType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -5911,20 +6081,21 @@ class EnumerationAlarmType(AlarmType):
         permits a form of "inverted logic" where the alarm list can
         specify the normal states instead of the alarm states.
     """
+
     enumeration_alarm_list: Optional[EnumerationAlarmListType] = field(
         default=None,
         metadata={
             "name": "EnumerationAlarmList",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     default_alarm_level: ConcernLevelsType = field(
         default=ConcernLevelsType.NORMAL,
         metadata={
             "name": "defaultAlarmLevel",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -5942,6 +6113,7 @@ class FixedFrameStreamType(FrameStreamType):
         direction for the sync pattern
     :ivar frame_length_in_bits:
     """
+
     sync_strategy: Optional[FixedFrameSyncStrategyType] = field(
         default=None,
         metadata={
@@ -5949,7 +6121,7 @@ class FixedFrameStreamType(FrameStreamType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
     sync_aperture_in_bits: int = field(
         default=0,
@@ -5957,7 +6129,7 @@ class FixedFrameStreamType(FrameStreamType):
             "name": "syncApertureInBits",
             "type": "Attribute",
             "min_inclusive": 0,
-        }
+        },
     )
     frame_length_in_bits: Optional[int] = field(
         default=None,
@@ -5965,7 +6137,7 @@ class FixedFrameStreamType(FrameStreamType):
             "name": "frameLengthInBits",
             "type": "Attribute",
             "required": True,
-        }
+        },
     )
 
 
@@ -5982,13 +6154,14 @@ class IntegerValueType:
         instance of a parameter and selecting a specified value based on
         tests of the value of that parameter.
     """
+
     fixed_value: Optional[int] = field(
         default=None,
         metadata={
             "name": "FixedValue",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     dynamic_value: Optional[DynamicValueType] = field(
         default=None,
@@ -5996,7 +6169,7 @@ class IntegerValueType:
             "name": "DynamicValue",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     discrete_lookup_list: Optional[DiscreteLookupListType] = field(
         default=None,
@@ -6004,7 +6177,7 @@ class IntegerValueType:
             "name": "DiscreteLookupList",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -6023,13 +6196,14 @@ class NumericAlarmType(AlarmType):
     :ivar alarm_multi_ranges: Similar to but more lenient form of
         StaticAlarmRanges.
     """
+
     static_alarm_ranges: Optional[AlarmRangesType] = field(
         default=None,
         metadata={
             "name": "StaticAlarmRanges",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     change_alarm_ranges: Optional[ChangeAlarmRangesType] = field(
         default=None,
@@ -6037,7 +6211,7 @@ class NumericAlarmType(AlarmType):
             "name": "ChangeAlarmRanges",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     alarm_multi_ranges: Optional[AlarmMultiRangesType] = field(
         default=None,
@@ -6045,7 +6219,7 @@ class NumericAlarmType(AlarmType):
             "name": "AlarmMultiRanges",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -6063,13 +6237,14 @@ class ParameterSetType:
     :ivar parameter_ref: Used to include a Parameter defined in another
         sub-system in this sub-system.
     """
+
     parameter: List[ParameterType] = field(
         default_factory=list,
         metadata={
             "name": "Parameter",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     parameter_ref: List[ParameterRefType] = field(
         default_factory=list,
@@ -6077,7 +6252,7 @@ class ParameterSetType:
             "name": "ParameterRef",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -6089,20 +6264,21 @@ class StringAlarmType(AlarmType):
     The string alarm list is evaluated in list order. See
     ConcernsLevelsType and StringAlarmListType.
     """
+
     string_alarm_list: Optional[StringAlarmListType] = field(
         default=None,
         metadata={
             "name": "StringAlarmList",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     default_alarm_level: ConcernLevelsType = field(
         default=ConcernLevelsType.NORMAL,
         metadata={
             "name": "defaultAlarmLevel",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -6118,13 +6294,14 @@ class TimeAlarmType(AlarmType):
         passes some threshold value.  An alarm condition that triggers
         when the value changes too fast (or too slow)
     """
+
     static_alarm_ranges: Optional[TimeAlarmRangesType] = field(
         default=None,
         metadata={
             "name": "StaticAlarmRanges",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     change_per_second_alarm_ranges: Optional[TimeAlarmRangesType] = field(
         default=None,
@@ -6132,7 +6309,7 @@ class TimeAlarmType(AlarmType):
             "name": "ChangePerSecondAlarmRanges",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -6145,6 +6322,7 @@ class VariableFrameStreamType(FrameStreamType):
     The series is called the flag.   in the PCM stream that are usually
     made to be illegal in the PCM stream by zero or one bit insertion.
     """
+
     sync_strategy: Optional[VariableFrameSyncStrategyType] = field(
         default=None,
         metadata={
@@ -6152,7 +6330,7 @@ class VariableFrameStreamType(FrameStreamType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
 
 
@@ -6178,13 +6356,14 @@ class VariableStringType:
         data type so that the implementation can reserve/allocate enough
         memory to capture all reported instances of the string.
     """
+
     dynamic_value: Optional[DynamicValueType] = field(
         default=None,
         metadata={
             "name": "DynamicValue",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     discrete_lookup_list: Optional[DiscreteLookupListType] = field(
         default=None,
@@ -6192,7 +6371,7 @@ class VariableStringType:
             "name": "DiscreteLookupList",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     leading_size: Optional[LeadingSizeType] = field(
         default=None,
@@ -6200,7 +6379,7 @@ class VariableStringType:
             "name": "LeadingSize",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     termination_char: Optional[bytes] = field(
         default=None,
@@ -6209,7 +6388,7 @@ class VariableStringType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "format": "base16",
-        }
+        },
     )
     max_size_in_bits: Optional[int] = field(
         default=None,
@@ -6218,7 +6397,7 @@ class VariableStringType:
             "type": "Attribute",
             "required": True,
             "min_inclusive": 1,
-        }
+        },
     )
 
 
@@ -6241,13 +6420,14 @@ class VerifierSetType:
     to the verifiers in BaseMetaCommand should be avoided. See
     MetaCommandType and BaseMetaCommandType for additional information.
     """
+
     transferred_to_range_verifier: Optional[TransferredToRangeVerifierType] = field(
         default=None,
         metadata={
             "name": "TransferredToRangeVerifier",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     sent_from_range_verifier: Optional[SentFromRangeVerifierType] = field(
         default=None,
@@ -6255,7 +6435,7 @@ class VerifierSetType:
             "name": "SentFromRangeVerifier",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     received_verifier: Optional[ReceivedVerifierType] = field(
         default=None,
@@ -6263,7 +6443,7 @@ class VerifierSetType:
             "name": "ReceivedVerifier",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     accepted_verifier: Optional[AcceptedVerifierType] = field(
         default=None,
@@ -6271,7 +6451,7 @@ class VerifierSetType:
             "name": "AcceptedVerifier",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     queued_verifier: Optional[QueuedVerifierType] = field(
         default=None,
@@ -6279,7 +6459,7 @@ class VerifierSetType:
             "name": "QueuedVerifier",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     execution_verifier: List[ExecutionVerifierType] = field(
         default_factory=list,
@@ -6287,7 +6467,7 @@ class VerifierSetType:
             "name": "ExecutionVerifier",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     complete_verifier: List[CompleteVerifierType] = field(
         default_factory=list,
@@ -6295,7 +6475,7 @@ class VerifierSetType:
             "name": "CompleteVerifier",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     failed_verifier: Optional[FailedVerifierType] = field(
         default=None,
@@ -6303,7 +6483,7 @@ class VerifierSetType:
             "name": "FailedVerifier",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -6320,6 +6500,7 @@ class ArgumentBinaryDataEncodingType(DataEncodingType):
     :ivar to_binary_transform_algorithm: Used to convert binary data
         from an application data type to binary data
     """
+
     size_in_bits: Optional[ArgumentIntegerValueType] = field(
         default=None,
         metadata={
@@ -6327,7 +6508,7 @@ class ArgumentBinaryDataEncodingType(DataEncodingType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
     from_binary_transform_algorithm: Optional[ArgumentInputAlgorithmType] = field(
         default=None,
@@ -6335,7 +6516,7 @@ class ArgumentBinaryDataEncodingType(DataEncodingType):
             "name": "FromBinaryTransformAlgorithm",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     to_binary_transform_algorithm: Optional[ArgumentInputAlgorithmType] = field(
         default=None,
@@ -6343,7 +6524,7 @@ class ArgumentBinaryDataEncodingType(DataEncodingType):
             "name": "ToBinaryTransformAlgorithm",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -6355,6 +6536,7 @@ class ArgumentDimensionType:
     :ivar starting_index: zero based index
     :ivar ending_index:
     """
+
     starting_index: Optional[ArgumentIntegerValueType] = field(
         default=None,
         metadata={
@@ -6362,7 +6544,7 @@ class ArgumentDimensionType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
     ending_index: Optional[ArgumentIntegerValueType] = field(
         default=None,
@@ -6371,7 +6553,7 @@ class ArgumentDimensionType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
 
 
@@ -6381,12 +6563,13 @@ class ArgumentLocationInContainerInBitsType(ArgumentIntegerValueType):
     Identical to LocationInContainerInBitsType but supports argument instance
     references.
     """
+
     reference_location: ReferenceLocationType = field(
         default=ReferenceLocationType.PREVIOUS_ENTRY,
         metadata={
             "name": "referenceLocation",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -6399,6 +6582,7 @@ class ArgumentRepeatType:
         of repeated structures.
     :ivar offset:
     """
+
     count: Optional[ArgumentIntegerValueType] = field(
         default=None,
         metadata={
@@ -6406,7 +6590,7 @@ class ArgumentRepeatType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
     offset: Optional[ArgumentIntegerValueType] = field(
         default=None,
@@ -6414,7 +6598,7 @@ class ArgumentRepeatType:
             "name": "Offset",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -6440,13 +6624,14 @@ class ArgumentStringDataEncodingType(DataEncodingType):
         with the dynamic elements.
     :ivar encoding: The character set encoding of this string data type.
     """
+
     size_in_bits: Optional[SizeInBitsType] = field(
         default=None,
         metadata={
             "name": "SizeInBits",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     variable: Optional[ArgumentVariableStringType] = field(
         default=None,
@@ -6454,13 +6639,13 @@ class ArgumentStringDataEncodingType(DataEncodingType):
             "name": "Variable",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     encoding: StringEncodingType = field(
         default=StringEncodingType.UTF_8,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -6471,6 +6656,7 @@ class BinaryContextAlarmListType:
 
     Process the contexts in list order.  See BinaryContextAlarmType.
     """
+
     context_alarm: List[BinaryContextAlarmType] = field(
         default_factory=list,
         metadata={
@@ -6478,7 +6664,7 @@ class BinaryContextAlarmListType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -6498,6 +6684,7 @@ class BinaryDataEncodingType(DataEncodingType):
     :ivar to_binary_transform_algorithm: Used to convert binary data
         from an application data type to binary data
     """
+
     size_in_bits: Optional[IntegerValueType] = field(
         default=None,
         metadata={
@@ -6505,7 +6692,7 @@ class BinaryDataEncodingType(DataEncodingType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
     from_binary_transform_algorithm: Optional[InputAlgorithmType] = field(
         default=None,
@@ -6513,7 +6700,7 @@ class BinaryDataEncodingType(DataEncodingType):
             "name": "FromBinaryTransformAlgorithm",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     to_binary_transform_algorithm: Optional[InputAlgorithmType] = field(
         default=None,
@@ -6521,7 +6708,7 @@ class BinaryDataEncodingType(DataEncodingType):
             "name": "ToBinaryTransformAlgorithm",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -6534,7 +6721,7 @@ class BooleanContextAlarmType(BooleanAlarmType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
 
 
@@ -6548,6 +6735,7 @@ class DimensionType:
     :ivar starting_index: zero based index
     :ivar ending_index:
     """
+
     starting_index: Optional[IntegerValueType] = field(
         default=None,
         metadata={
@@ -6555,7 +6743,7 @@ class DimensionType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
     ending_index: Optional[IntegerValueType] = field(
         default=None,
@@ -6564,7 +6752,7 @@ class DimensionType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
 
 
@@ -6577,6 +6765,7 @@ class EnumerationContextAlarmType(EnumerationAlarmType):
     :ivar context_match: Describe a context in terms of a parameter and
         value that when true enables the context alarm definition.
     """
+
     context_match: Optional[ContextMatchType] = field(
         default=None,
         metadata={
@@ -6584,7 +6773,7 @@ class EnumerationContextAlarmType(EnumerationAlarmType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
 
 
@@ -6611,13 +6800,14 @@ class FloatDataEncodingType(DataEncodingType):
         telemetry processing and/or recording requirements. If the value
         is unspecified or zero, any change is significant.
     """
+
     default_calibrator: Optional[CalibratorType] = field(
         default=None,
         metadata={
             "name": "DefaultCalibrator",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     context_calibrator_list: Optional[ContextCalibratorListType] = field(
         default=None,
@@ -6625,27 +6815,27 @@ class FloatDataEncodingType(DataEncodingType):
             "name": "ContextCalibratorList",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     encoding: FloatEncodingType = field(
         default=FloatEncodingType.IEEE754_1985,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
     size_in_bits: FloatEncodingSizeInBitsType = field(
         default=FloatEncodingSizeInBitsType.VALUE_32,
         metadata={
             "name": "sizeInBits",
             "type": "Attribute",
-        }
+        },
     )
     change_threshold: Optional[float] = field(
         default=None,
         metadata={
             "name": "changeThreshold",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -6673,13 +6863,14 @@ class IntegerDataEncodingType(DataEncodingType):
         significant bit. If the value    is unspecified or zero, any
         change is significant.
     """
+
     default_calibrator: Optional[CalibratorType] = field(
         default=None,
         metadata={
             "name": "DefaultCalibrator",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     context_calibrator_list: Optional[ContextCalibratorListType] = field(
         default=None,
@@ -6687,13 +6878,13 @@ class IntegerDataEncodingType(DataEncodingType):
             "name": "ContextCalibratorList",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     encoding: IntegerEncodingType = field(
         default=IntegerEncodingType.UNSIGNED,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
     size_in_bits: int = field(
         default=8,
@@ -6701,7 +6892,7 @@ class IntegerDataEncodingType(DataEncodingType):
             "name": "sizeInBits",
             "type": "Attribute",
             "min_inclusive": 1,
-        }
+        },
     )
     change_threshold: Optional[int] = field(
         default=None,
@@ -6709,7 +6900,7 @@ class IntegerDataEncodingType(DataEncodingType):
             "name": "changeThreshold",
             "type": "Attribute",
             "min_inclusive": 0,
-        }
+        },
     )
 
 
@@ -6740,12 +6931,13 @@ class LocationInContainerInBitsType(IntegerValueType):
         interpret the start bit position.  The default is 0 bits from
         the end of the previousEntry, which makes the entry contiguous.
     """
+
     reference_location: ReferenceLocationType = field(
         default=ReferenceLocationType.PREVIOUS_ENTRY,
         metadata={
             "name": "referenceLocation",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -6760,6 +6952,7 @@ class NumericContextAlarmType(NumericAlarmType):
         parameter dependent test, that when evaluates to true, enables
         this alarm definition.
     """
+
     context_match: Optional[ContextMatchType] = field(
         default=None,
         metadata={
@@ -6767,7 +6960,7 @@ class NumericContextAlarmType(NumericAlarmType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
 
 
@@ -6780,6 +6973,7 @@ class RepeatType:
         of repeated structures.
     :ivar offset:
     """
+
     count: Optional[IntegerValueType] = field(
         default=None,
         metadata={
@@ -6787,7 +6981,7 @@ class RepeatType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
     offset: Optional[IntegerValueType] = field(
         default=None,
@@ -6795,7 +6989,7 @@ class RepeatType:
             "name": "Offset",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -6804,13 +6998,14 @@ class StreamSetType:
     """
     Contains an unordered set of Streams.
     """
+
     fixed_frame_stream: List[FixedFrameStreamType] = field(
         default_factory=list,
         metadata={
             "name": "FixedFrameStream",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     variable_frame_stream: List[VariableFrameStreamType] = field(
         default_factory=list,
@@ -6818,7 +7013,7 @@ class StreamSetType:
             "name": "VariableFrameStream",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     custom_stream: List[CustomStreamType] = field(
         default_factory=list,
@@ -6826,7 +7021,7 @@ class StreamSetType:
             "name": "CustomStream",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -6836,6 +7031,7 @@ class StringContextAlarmType(StringAlarmType):
 
     See ContextMatchType and StringAlarmType.
     """
+
     context_match: Optional[ContextMatchType] = field(
         default=None,
         metadata={
@@ -6843,7 +7039,7 @@ class StringContextAlarmType(StringAlarmType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
 
 
@@ -6869,13 +7065,14 @@ class StringDataEncodingType(DataEncodingType):
         with the dynamic elements.
     :ivar encoding: The character set encoding of this string data type.
     """
+
     size_in_bits: Optional[SizeInBitsType] = field(
         default=None,
         metadata={
             "name": "SizeInBits",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     variable: Optional[VariableStringType] = field(
         default=None,
@@ -6883,13 +7080,13 @@ class StringDataEncodingType(DataEncodingType):
             "name": "Variable",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     encoding: StringEncodingType = field(
         default=StringEncodingType.UTF_8,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -6899,6 +7096,7 @@ class TimeContextAlarmType(TimeAlarmType):
 
     Context alarms override Default alarms
     """
+
     context_match: Optional[ContextMatchType] = field(
         default=None,
         metadata={
@@ -6906,7 +7104,7 @@ class TimeContextAlarmType(TimeAlarmType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
 
 
@@ -6934,13 +7132,14 @@ class ArgumentBaseDataType(NameDescriptionType):
         inherit all the attributes from the baseType any of which may be
         redefined in this type definition.
     """
+
     unit_set: Optional[UnitSetType] = field(
         default=None,
         metadata={
             "name": "UnitSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     binary_data_encoding: Optional[ArgumentBinaryDataEncodingType] = field(
         default=None,
@@ -6948,7 +7147,7 @@ class ArgumentBaseDataType(NameDescriptionType):
             "name": "BinaryDataEncoding",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     float_data_encoding: Optional[FloatDataEncodingType] = field(
         default=None,
@@ -6956,7 +7155,7 @@ class ArgumentBaseDataType(NameDescriptionType):
             "name": "FloatDataEncoding",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     integer_data_encoding: Optional[IntegerDataEncodingType] = field(
         default=None,
@@ -6964,7 +7163,7 @@ class ArgumentBaseDataType(NameDescriptionType):
             "name": "IntegerDataEncoding",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     string_data_encoding: Optional[ArgumentStringDataEncodingType] = field(
         default=None,
@@ -6972,7 +7171,7 @@ class ArgumentBaseDataType(NameDescriptionType):
             "name": "StringDataEncoding",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     base_type: Optional[str] = field(
         default=None,
@@ -6980,7 +7179,7 @@ class ArgumentBaseDataType(NameDescriptionType):
             "name": "baseType",
             "type": "Attribute",
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
 
 
@@ -6989,6 +7188,7 @@ class ArgumentDimensionListType:
     """
     Identical to DimensionListType but supports argument instance references.
     """
+
     dimension: List[ArgumentDimensionType] = field(
         default_factory=list,
         metadata={
@@ -6996,7 +7196,7 @@ class ArgumentDimensionListType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -7029,13 +7229,14 @@ class ArgumentSequenceEntryType:
     :ivar short_description: Optional short description for this entry
         element.
     """
+
     location_in_container_in_bits: Optional[ArgumentLocationInContainerInBitsType] = field(
         default=None,
         metadata={
             "name": "LocationInContainerInBits",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     repeat_entry: Optional[ArgumentRepeatType] = field(
         default=None,
@@ -7043,7 +7244,7 @@ class ArgumentSequenceEntryType:
             "name": "RepeatEntry",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     include_condition: Optional[ArgumentMatchCriteriaType] = field(
         default=None,
@@ -7051,7 +7252,7 @@ class ArgumentSequenceEntryType:
             "name": "IncludeCondition",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     ancillary_data_set: Optional[AncillaryDataSetType] = field(
         default=None,
@@ -7059,14 +7260,14 @@ class ArgumentSequenceEntryType:
             "name": "AncillaryDataSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     short_description: Optional[str] = field(
         default=None,
         metadata={
             "name": "shortDescription",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -7101,13 +7302,14 @@ class BaseDataType(NameDescriptionType):
         inherit all the attributes from the baseType any of which may be
         redefined in this type definition.
     """
+
     unit_set: Optional[UnitSetType] = field(
         default=None,
         metadata={
             "name": "UnitSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     binary_data_encoding: Optional[BinaryDataEncodingType] = field(
         default=None,
@@ -7115,7 +7317,7 @@ class BaseDataType(NameDescriptionType):
             "name": "BinaryDataEncoding",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     float_data_encoding: Optional[FloatDataEncodingType] = field(
         default=None,
@@ -7123,7 +7325,7 @@ class BaseDataType(NameDescriptionType):
             "name": "FloatDataEncoding",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     integer_data_encoding: Optional[IntegerDataEncodingType] = field(
         default=None,
@@ -7131,7 +7333,7 @@ class BaseDataType(NameDescriptionType):
             "name": "IntegerDataEncoding",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     string_data_encoding: Optional[StringDataEncodingType] = field(
         default=None,
@@ -7139,7 +7341,7 @@ class BaseDataType(NameDescriptionType):
             "name": "StringDataEncoding",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     base_type: Optional[str] = field(
         default=None,
@@ -7147,7 +7349,7 @@ class BaseDataType(NameDescriptionType):
             "name": "baseType",
             "type": "Attribute",
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
 
 
@@ -7160,7 +7362,7 @@ class BooleanContextAlarmListType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -7176,13 +7378,14 @@ class ContainerType(NameDescriptionType):
         correction, change byte order,  provide the size (when it can't
         be derived), or perform some custom processing.
     """
+
     default_rate_in_stream: Optional[RateInStreamType] = field(
         default=None,
         metadata={
             "name": "DefaultRateInStream",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     rate_in_stream_set: Optional[RateInStreamSetType] = field(
         default=None,
@@ -7190,7 +7393,7 @@ class ContainerType(NameDescriptionType):
             "name": "RateInStreamSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     binary_encoding: Optional[BinaryDataEncodingType] = field(
         default=None,
@@ -7198,7 +7401,7 @@ class ContainerType(NameDescriptionType):
             "name": "BinaryEncoding",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -7209,6 +7412,7 @@ class DimensionListType:
 
     The last dimension is assumed to be the least significant - that is this dimension will cycle through its combination before the next to last dimension changes.  The order MUST ascend or the array will need to be broken out entry by entry.
     """
+
     dimension: List[DimensionType] = field(
         default_factory=list,
         metadata={
@@ -7216,7 +7420,7 @@ class DimensionListType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -7253,13 +7457,14 @@ class EncodingType:
         a calibrator to convert between the raw value and the
         engineering units.
     """
+
     binary_data_encoding: Optional[BinaryDataEncodingType] = field(
         default=None,
         metadata={
             "name": "BinaryDataEncoding",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     float_data_encoding: Optional[FloatDataEncodingType] = field(
         default=None,
@@ -7267,7 +7472,7 @@ class EncodingType:
             "name": "FloatDataEncoding",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     integer_data_encoding: Optional[IntegerDataEncodingType] = field(
         default=None,
@@ -7275,7 +7480,7 @@ class EncodingType:
             "name": "IntegerDataEncoding",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     string_data_encoding: Optional[StringDataEncodingType] = field(
         default=None,
@@ -7283,25 +7488,25 @@ class EncodingType:
             "name": "StringDataEncoding",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     units: TimeUnitsType = field(
         default=TimeUnitsType.SECONDS,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
     scale: float = field(
         default=1.0,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
     offset: float = field(
         default=0.0,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -7315,6 +7520,7 @@ class EnumerationContextAlarmListType:
     :ivar context_alarm: Describe the alarm matching context criteria
         and the alarm definition itself.
     """
+
     context_alarm: List[EnumerationContextAlarmType] = field(
         default_factory=list,
         metadata={
@@ -7322,7 +7528,7 @@ class EnumerationContextAlarmListType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -7339,6 +7545,7 @@ class NumericContextAlarmListType:
         that uses this type that is valid when a test against the value
         of one or more other parameters evaluates to true.
     """
+
     context_alarm: List[NumericContextAlarmType] = field(
         default_factory=list,
         metadata={
@@ -7346,7 +7553,7 @@ class NumericContextAlarmListType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -7391,13 +7598,14 @@ class SequenceEntryType:
     :ivar short_description: Optional short description for this entry
         element.
     """
+
     location_in_container_in_bits: Optional[LocationInContainerInBitsType] = field(
         default=None,
         metadata={
             "name": "LocationInContainerInBits",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     repeat_entry: Optional[RepeatType] = field(
         default=None,
@@ -7405,7 +7613,7 @@ class SequenceEntryType:
             "name": "RepeatEntry",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     include_condition: Optional[MatchCriteriaType] = field(
         default=None,
@@ -7413,7 +7621,7 @@ class SequenceEntryType:
             "name": "IncludeCondition",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     time_association: Optional[TimeAssociationType] = field(
         default=None,
@@ -7421,7 +7629,7 @@ class SequenceEntryType:
             "name": "TimeAssociation",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     ancillary_data_set: Optional[AncillaryDataSetType] = field(
         default=None,
@@ -7429,14 +7637,14 @@ class SequenceEntryType:
             "name": "AncillaryDataSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     short_description: Optional[str] = field(
         default=None,
         metadata={
             "name": "shortDescription",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -7446,6 +7654,7 @@ class StringContextAlarmListType:
 
     Process the contexts in list order. See StringContextAlarmType.
     """
+
     context_alarm: List[StringContextAlarmType] = field(
         default_factory=list,
         metadata={
@@ -7453,7 +7662,7 @@ class StringContextAlarmListType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -7466,7 +7675,7 @@ class TimeContextAlarmListType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -7476,6 +7685,7 @@ class ArgumentArgumentRefEntryType(ArgumentSequenceEntryType):
     Identical to ArgumentRefEntryType but supports argument instance
     references.
     """
+
     argument_ref: Optional[str] = field(
         default=None,
         metadata={
@@ -7483,7 +7693,7 @@ class ArgumentArgumentRefEntryType(ArgumentSequenceEntryType):
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
 
 
@@ -7499,13 +7709,14 @@ class ArgumentArrayArgumentRefEntryType(ArgumentSequenceEntryType):
     :ivar argument_ref:
     :ivar last_entry_for_this_array_instance:
     """
+
     dimension_list: Optional[ArgumentDimensionListType] = field(
         default=None,
         metadata={
             "name": "DimensionList",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     argument_ref: Optional[str] = field(
         default=None,
@@ -7514,14 +7725,14 @@ class ArgumentArrayArgumentRefEntryType(ArgumentSequenceEntryType):
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
     last_entry_for_this_array_instance: bool = field(
         default=False,
         metadata={
             "name": "lastEntryForThisArrayInstance",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -7537,13 +7748,14 @@ class ArgumentArrayParameterRefEntryType(ArgumentSequenceEntryType):
     :ivar parameter_ref:
     :ivar last_entry_for_this_array_instance:
     """
+
     dimension_list: Optional[DimensionListType] = field(
         default=None,
         metadata={
             "name": "DimensionList",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     parameter_ref: Optional[str] = field(
         default=None,
@@ -7552,14 +7764,14 @@ class ArgumentArrayParameterRefEntryType(ArgumentSequenceEntryType):
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
     last_entry_for_this_array_instance: bool = field(
         default=False,
         metadata={
             "name": "lastEntryForThisArrayInstance",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -7574,13 +7786,14 @@ class ArgumentBaseTimeDataType(NameDescriptionType):
         time type.
     :ivar base_type: Extend another absolute or relative time type.
     """
+
     encoding: Optional[EncodingType] = field(
         default=None,
         metadata={
             "name": "Encoding",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     reference_time: Optional[ReferenceTimeType] = field(
         default=None,
@@ -7588,7 +7801,7 @@ class ArgumentBaseTimeDataType(NameDescriptionType):
             "name": "ReferenceTime",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     base_type: Optional[str] = field(
         default=None,
@@ -7596,7 +7809,7 @@ class ArgumentBaseTimeDataType(NameDescriptionType):
             "name": "baseType",
             "type": "Attribute",
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
 
 
@@ -7609,13 +7822,14 @@ class ArgumentBinaryDataType(ArgumentBaseDataType):
         calibrated form.  Extra bits are truncated from the MSB
         (leftmost).
     """
+
     initial_value: Optional[bytes] = field(
         default=None,
         metadata={
             "name": "initialValue",
             "type": "Attribute",
             "format": "base16",
-        }
+        },
     )
 
 
@@ -7631,26 +7845,27 @@ class ArgumentBooleanDataType(ArgumentBaseDataType):
     :ivar zero_string_value: Enumeration string representing the 0
         value, with the default being 'False'.
     """
+
     initial_value: Optional[str] = field(
         default=None,
         metadata={
             "name": "initialValue",
             "type": "Attribute",
-        }
+        },
     )
     one_string_value: str = field(
         default="True",
         metadata={
             "name": "oneStringValue",
             "type": "Attribute",
-        }
+        },
     )
     zero_string_value: str = field(
         default="False",
         metadata={
             "name": "zeroStringValue",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -7660,6 +7875,7 @@ class ArgumentContainerRefEntryType(ArgumentSequenceEntryType):
     Identical to ContainerRefEntryType but supports argument instance
     references.
     """
+
     container_ref: Optional[str] = field(
         default=None,
         metadata={
@@ -7667,7 +7883,7 @@ class ArgumentContainerRefEntryType(ArgumentSequenceEntryType):
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
 
 
@@ -7677,6 +7893,7 @@ class ArgumentContainerSegmentRefEntryType(ArgumentSequenceEntryType):
     Identical to ContainerSegmentRefEntryType but supports argument instance
     references.
     """
+
     container_ref: Optional[str] = field(
         default=None,
         metadata={
@@ -7684,14 +7901,14 @@ class ArgumentContainerSegmentRefEntryType(ArgumentSequenceEntryType):
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
     order: Optional[int] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "min_inclusive": 1,
-        }
+        },
     )
     size_in_bits: Optional[int] = field(
         default=None,
@@ -7700,7 +7917,7 @@ class ArgumentContainerSegmentRefEntryType(ArgumentSequenceEntryType):
             "type": "Attribute",
             "required": True,
             "min_inclusive": 1,
-        }
+        },
     )
 
 
@@ -7715,6 +7932,7 @@ class ArgumentEnumeratedDataType(ArgumentBaseDataType):
         calibrated form.  Use the label, it must be in the enumeration
         list to be valid.
     """
+
     enumeration_list: Optional[EnumerationListType] = field(
         default=None,
         metadata={
@@ -7722,14 +7940,14 @@ class ArgumentEnumeratedDataType(ArgumentBaseDataType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
     initial_value: Optional[str] = field(
         default=None,
         metadata={
             "name": "initialValue",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -7748,11 +7966,12 @@ class ArgumentFixedValueEntryType(ArgumentSequenceEntryType):
     :ivar size_in_bits: The number of bits that this fixed/constant
         value should occupy in the sequence.
     """
+
     name: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
     binary_value: Optional[bytes] = field(
         default=None,
@@ -7761,7 +7980,7 @@ class ArgumentFixedValueEntryType(ArgumentSequenceEntryType):
             "type": "Attribute",
             "required": True,
             "format": "base16",
-        }
+        },
     )
     size_in_bits: Optional[int] = field(
         default=None,
@@ -7770,7 +7989,7 @@ class ArgumentFixedValueEntryType(ArgumentSequenceEntryType):
             "type": "Attribute",
             "required": True,
             "min_inclusive": 1,
-        }
+        },
     )
 
 
@@ -7792,27 +8011,28 @@ class ArgumentFloatDataType(ArgumentBaseDataType):
         engineering data types to capture the entire range of possible
         values.
     """
+
     to_string: Optional[ToStringType] = field(
         default=None,
         metadata={
             "name": "ToString",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     initial_value: Optional[float] = field(
         default=None,
         metadata={
             "name": "initialValue",
             "type": "Attribute",
-        }
+        },
     )
     size_in_bits: FloatSizeInBitsType = field(
         default=FloatSizeInBitsType.VALUE_32,
         metadata={
             "name": "sizeInBits",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -7822,6 +8042,7 @@ class ArgumentIndirectParameterRefEntryType(ArgumentSequenceEntryType):
     Identical to IndirectParameterRefEntryType but supports argument instance
     references.
     """
+
     parameter_instance: Optional[ParameterInstanceRefType] = field(
         default=None,
         metadata={
@@ -7829,14 +8050,14 @@ class ArgumentIndirectParameterRefEntryType(ArgumentSequenceEntryType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
     alias_name_space: Optional[str] = field(
         default=None,
         metadata={
             "name": "aliasNameSpace",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -7864,13 +8085,14 @@ class ArgumentIntegerDataType(ArgumentBaseDataType):
         be confused with the encoding type for the raw value.  The
         default is true.
     """
+
     to_string: Optional[ToStringType] = field(
         default=None,
         metadata={
             "name": "ToString",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     initial_value: Optional[Union[int, str]] = field(
         default=None,
@@ -7878,7 +8100,7 @@ class ArgumentIntegerDataType(ArgumentBaseDataType):
             "name": "initialValue",
             "type": "Attribute",
             "pattern": r"0[xX][0-9a-fA-F]+",
-        }
+        },
     )
     size_in_bits: int = field(
         default=32,
@@ -7886,13 +8108,13 @@ class ArgumentIntegerDataType(ArgumentBaseDataType):
             "name": "sizeInBits",
             "type": "Attribute",
             "min_inclusive": 1,
-        }
+        },
     )
     signed: bool = field(
         default=True,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -7902,6 +8124,7 @@ class ArgumentParameterRefEntryType(ArgumentSequenceEntryType):
     Identical to ParameterRefEntryType but supports argument instance
     references.
     """
+
     parameter_ref: Optional[str] = field(
         default=None,
         metadata={
@@ -7909,7 +8132,7 @@ class ArgumentParameterRefEntryType(ArgumentSequenceEntryType):
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
 
 
@@ -7919,6 +8142,7 @@ class ArgumentParameterSegmentRefEntryType(ArgumentSequenceEntryType):
     Identical to ParameterSegmentRefEntryType but supports argument instance
     references.
     """
+
     parameter_ref: Optional[str] = field(
         default=None,
         metadata={
@@ -7926,14 +8150,14 @@ class ArgumentParameterSegmentRefEntryType(ArgumentSequenceEntryType):
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
     order: Optional[int] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "min_inclusive": 1,
-        }
+        },
     )
     size_in_bits: Optional[int] = field(
         default=None,
@@ -7942,7 +8166,7 @@ class ArgumentParameterSegmentRefEntryType(ArgumentSequenceEntryType):
             "type": "Attribute",
             "required": True,
             "min_inclusive": 1,
-        }
+        },
     )
 
 
@@ -7951,6 +8175,7 @@ class ArgumentStreamSegmentEntryType(ArgumentSequenceEntryType):
     """
     Identical to StreamRefEntryType but supports argument instance references.
     """
+
     stream_ref: Optional[str] = field(
         default=None,
         metadata={
@@ -7958,14 +8183,14 @@ class ArgumentStreamSegmentEntryType(ArgumentSequenceEntryType):
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
     order: Optional[int] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "min_inclusive": 1,
-        }
+        },
     )
     size_in_bits: Optional[int] = field(
         default=None,
@@ -7974,7 +8199,7 @@ class ArgumentStreamSegmentEntryType(ArgumentSequenceEntryType):
             "type": "Attribute",
             "required": True,
             "min_inclusive": 1,
-        }
+        },
     )
 
 
@@ -7990,34 +8215,35 @@ class ArgumentStringDataType(ArgumentBaseDataType):
         expression
     :ivar character_width:
     """
+
     size_range_in_characters: Optional[IntegerRangeType] = field(
         default=None,
         metadata={
             "name": "SizeRangeInCharacters",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     initial_value: Optional[str] = field(
         default=None,
         metadata={
             "name": "initialValue",
             "type": "Attribute",
-        }
+        },
     )
     restriction_pattern: Optional[str] = field(
         default=None,
         metadata={
             "name": "restrictionPattern",
             "type": "Attribute",
-        }
+        },
     )
     character_width: Optional[CharacterWidthType] = field(
         default=None,
         metadata={
             "name": "characterWidth",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -8030,6 +8256,7 @@ class ArrayArgumentType(ArrayDataTypeType):
 
     :ivar dimension_list: Describe the dimensions of this array.
     """
+
     dimension_list: Optional[ArgumentDimensionListType] = field(
         default=None,
         metadata={
@@ -8037,7 +8264,7 @@ class ArrayArgumentType(ArrayDataTypeType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
 
 
@@ -8055,13 +8282,14 @@ class ArrayParameterRefEntryType(SequenceEntryType):
         same size.
     :ivar parameter_ref:
     """
+
     dimension_list: Optional[DimensionListType] = field(
         default=None,
         metadata={
             "name": "DimensionList",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     parameter_ref: Optional[str] = field(
         default=None,
@@ -8070,7 +8298,7 @@ class ArrayParameterRefEntryType(SequenceEntryType):
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
 
 
@@ -8083,6 +8311,7 @@ class ArrayParameterType(ArrayDataTypeType):
 
     :ivar dimension_list: Describe the dimensions of this array.
     """
+
     dimension_list: Optional[DimensionListType] = field(
         default=None,
         metadata={
@@ -8090,7 +8319,7 @@ class ArrayParameterType(ArrayDataTypeType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
 
 
@@ -8112,13 +8341,14 @@ class BaseTimeDataType(NameDescriptionType):
         time type.
     :ivar base_type: Extend another absolute or relative time type.
     """
+
     encoding: Optional[EncodingType] = field(
         default=None,
         metadata={
             "name": "Encoding",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     reference_time: Optional[ReferenceTimeType] = field(
         default=None,
@@ -8126,7 +8356,7 @@ class BaseTimeDataType(NameDescriptionType):
             "name": "ReferenceTime",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     base_type: Optional[str] = field(
         default=None,
@@ -8134,7 +8364,7 @@ class BaseTimeDataType(NameDescriptionType):
             "name": "baseType",
             "type": "Attribute",
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
 
 
@@ -8152,13 +8382,14 @@ class BinaryDataType(BaseDataType):
         calibrated form.  Extra bits are truncated from the MSB
         (leftmost).
     """
+
     initial_value: Optional[bytes] = field(
         default=None,
         metadata={
             "name": "initialValue",
             "type": "Attribute",
             "format": "base16",
-        }
+        },
     )
 
 
@@ -8179,26 +8410,27 @@ class BooleanDataType(BaseDataType):
     :ivar zero_string_value: Enumeration string representing the 0
         value, with the default being 'False'.
     """
+
     initial_value: Optional[str] = field(
         default=None,
         metadata={
             "name": "initialValue",
             "type": "Attribute",
-        }
+        },
     )
     one_string_value: str = field(
         default="True",
         metadata={
             "name": "oneStringValue",
             "type": "Attribute",
-        }
+        },
     )
     zero_string_value: str = field(
         default="False",
         metadata={
             "name": "zeroStringValue",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -8207,6 +8439,7 @@ class ContainerRefEntryType(SequenceEntryType):
     """
     An entry that is simply a reference to another container.
     """
+
     container_ref: Optional[str] = field(
         default=None,
         metadata={
@@ -8214,7 +8447,7 @@ class ContainerRefEntryType(SequenceEntryType):
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
 
 
@@ -8230,6 +8463,7 @@ class ContainerSegmentRefEntryType(SequenceEntryType):
     first segment order="0".  Each instance of a container cannot
     overlap in the overall sequence with another instance
     """
+
     container_ref: Optional[str] = field(
         default=None,
         metadata={
@@ -8237,14 +8471,14 @@ class ContainerSegmentRefEntryType(SequenceEntryType):
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
     order: Optional[int] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "min_inclusive": 1,
-        }
+        },
     )
     size_in_bits: Optional[int] = field(
         default=None,
@@ -8253,7 +8487,7 @@ class ContainerSegmentRefEntryType(SequenceEntryType):
             "type": "Attribute",
             "required": True,
             "min_inclusive": 1,
-        }
+        },
     )
 
 
@@ -8271,6 +8505,7 @@ class EnumeratedDataType(BaseDataType):
         calibrated form.  Use the label, it must be in the enumeration
         list to be valid.
     """
+
     enumeration_list: Optional[EnumerationListType] = field(
         default=None,
         metadata={
@@ -8278,14 +8513,14 @@ class EnumeratedDataType(BaseDataType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
     initial_value: Optional[str] = field(
         default=None,
         metadata={
             "name": "initialValue",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -8320,13 +8555,14 @@ class FloatDataType(BaseDataType):
         engineering data types to capture the entire range of possible
         values.
     """
+
     to_string: Optional[ToStringType] = field(
         default=None,
         metadata={
             "name": "ToString",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     valid_range: Optional["FloatDataType.ValidRange"] = field(
         default=None,
@@ -8334,21 +8570,21 @@ class FloatDataType(BaseDataType):
             "name": "ValidRange",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     initial_value: Optional[float] = field(
         default=None,
         metadata={
             "name": "initialValue",
             "type": "Attribute",
-        }
+        },
     )
     size_in_bits: FloatSizeInBitsType = field(
         default=FloatSizeInBitsType.VALUE_32,
         metadata={
             "name": "sizeInBits",
             "type": "Attribute",
-        }
+        },
     )
 
     @dataclass
@@ -8359,12 +8595,13 @@ class FloatDataType(BaseDataType):
             engineering/calibrated values, although this can be
             adjusted.
         """
+
         valid_range_applies_to_calibrated: bool = field(
             default=True,
             metadata={
                 "name": "validRangeAppliesToCalibrated",
                 "type": "Attribute",
-            }
+            },
         )
 
 
@@ -8377,6 +8614,7 @@ class IndirectParameterRefEntryType(SequenceEntryType):
     of the Parameter or its alias.  If it's an alias name, the alias
     namespace is supplied as an attribute.
     """
+
     parameter_instance: Optional[ParameterInstanceRefType] = field(
         default=None,
         metadata={
@@ -8384,14 +8622,14 @@ class IndirectParameterRefEntryType(SequenceEntryType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
     alias_name_space: Optional[str] = field(
         default=None,
         metadata={
             "name": "aliasNameSpace",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -8428,13 +8666,14 @@ class IntegerDataType(BaseDataType):
         be confused with the encoding type for the raw value.  The
         default is true.
     """
+
     to_string: Optional[ToStringType] = field(
         default=None,
         metadata={
             "name": "ToString",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     valid_range: Optional["IntegerDataType.ValidRange"] = field(
         default=None,
@@ -8442,14 +8681,14 @@ class IntegerDataType(BaseDataType):
             "name": "ValidRange",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     initial_value: Optional[int] = field(
         default=None,
         metadata={
             "name": "initialValue",
             "type": "Attribute",
-        }
+        },
     )
     size_in_bits: int = field(
         default=32,
@@ -8457,13 +8696,13 @@ class IntegerDataType(BaseDataType):
             "name": "sizeInBits",
             "type": "Attribute",
             "min_inclusive": 1,
-        }
+        },
     )
     signed: bool = field(
         default=True,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
 
     @dataclass
@@ -8474,12 +8713,13 @@ class IntegerDataType(BaseDataType):
             engineering/calibrated values, although this can be
             adjusted.
         """
+
         valid_range_applies_to_calibrated: bool = field(
             default=True,
             metadata={
                 "name": "validRangeAppliesToCalibrated",
                 "type": "Attribute",
-            }
+            },
         )
 
 
@@ -8488,6 +8728,7 @@ class ParameterRefEntryType(SequenceEntryType):
     """
     An entry that is a single Parameter.
     """
+
     parameter_ref: Optional[str] = field(
         default=None,
         metadata={
@@ -8495,7 +8736,7 @@ class ParameterRefEntryType(SequenceEntryType):
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
 
 
@@ -8510,6 +8751,7 @@ class ParameterSegmentRefEntryType(SequenceEntryType):
     parameter segment may be supplied with the order attribute where the
     first segment order="0".
     """
+
     parameter_ref: Optional[str] = field(
         default=None,
         metadata={
@@ -8517,14 +8759,14 @@ class ParameterSegmentRefEntryType(SequenceEntryType):
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
     order: Optional[int] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "min_inclusive": 1,
-        }
+        },
     )
     size_in_bits: Optional[int] = field(
         default=None,
@@ -8533,7 +8775,7 @@ class ParameterSegmentRefEntryType(SequenceEntryType):
             "type": "Attribute",
             "required": True,
             "min_inclusive": 1,
-        }
+        },
     )
 
 
@@ -8546,6 +8788,7 @@ class StreamSegmentEntryType(SequenceEntryType):
     case the order of the stream segments may be supplied with the order
     attribute where the first segment order="0".
     """
+
     stream_ref: Optional[str] = field(
         default=None,
         metadata={
@@ -8553,14 +8796,14 @@ class StreamSegmentEntryType(SequenceEntryType):
             "type": "Attribute",
             "required": True,
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
     order: Optional[int] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "min_inclusive": 1,
-        }
+        },
     )
     size_in_bits: Optional[int] = field(
         default=None,
@@ -8569,7 +8812,7 @@ class StreamSegmentEntryType(SequenceEntryType):
             "type": "Attribute",
             "required": True,
             "min_inclusive": 1,
-        }
+        },
     )
 
 
@@ -8597,34 +8840,35 @@ class StringDataType(BaseDataType):
         expression
     :ivar character_width:
     """
+
     size_range_in_characters: Optional[IntegerRangeType] = field(
         default=None,
         metadata={
             "name": "SizeRangeInCharacters",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     initial_value: Optional[str] = field(
         default=None,
         metadata={
             "name": "initialValue",
             "type": "Attribute",
-        }
+        },
     )
     restriction_pattern: Optional[str] = field(
         default=None,
         metadata={
             "name": "restrictionPattern",
             "type": "Attribute",
-        }
+        },
     )
     character_width: Optional[CharacterWidthType] = field(
         default=None,
         metadata={
             "name": "characterWidth",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -8648,12 +8892,13 @@ class AbsoluteTimeDataType(BaseTimeDataType):
     :ivar initial_value: Default/Initial value is always given in
         calibrated form.
     """
+
     initial_value: Optional[XmlDateTime] = field(
         default=None,
         metadata={
             "name": "initialValue",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -8677,12 +8922,13 @@ class ArgumentAbsoluteTimeDataType(ArgumentBaseTimeDataType):
     :ivar initial_value: Default/Initial value is always given in
         calibrated form.
     """
+
     initial_value: Optional[XmlDateTime] = field(
         default=None,
         metadata={
             "name": "initialValue",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -8701,12 +8947,13 @@ class ArgumentRelativeTimeDataType(ArgumentBaseTimeDataType):
     also indicate a duration of minus 120 days as: -P120D.  An extension
     of Schema duration type.
     """
+
     initial_value: Optional[XmlDuration] = field(
         default=None,
         metadata={
             "name": "initialValue",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -8741,13 +8988,14 @@ class BinaryParameterType(BinaryDataType):
         contextual match definition evaluates to true.  The first match
         that evaluates to true takes precedence.
     """
+
     default_alarm: Optional[BinaryAlarmType] = field(
         default=None,
         metadata={
             "name": "DefaultAlarm",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     binary_context_alarm_list: Optional[BinaryContextAlarmListType] = field(
         default=None,
@@ -8755,7 +9003,7 @@ class BinaryParameterType(BinaryDataType):
             "name": "BinaryContextAlarmList",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -8789,13 +9037,14 @@ class BooleanParameterType(BooleanDataType):
         contextual match definition evaluates to true.  The first match
         that evaluates to true takes precedence.
     """
+
     default_alarm: Optional[BooleanAlarmType] = field(
         default=None,
         metadata={
             "name": "DefaultAlarm",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     context_alarm_list: Optional[BooleanContextAlarmListType] = field(
         default=None,
@@ -8803,7 +9052,7 @@ class BooleanParameterType(BooleanDataType):
             "name": "ContextAlarmList",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -8848,13 +9097,14 @@ class CommandContainerEntryListType:
     :ivar fixed_value_entry: Specify an immutable value to be a part of
         this container layout definition.
     """
+
     parameter_ref_entry: List[ArgumentParameterRefEntryType] = field(
         default_factory=list,
         metadata={
             "name": "ParameterRefEntry",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     parameter_segment_ref_entry: List[ArgumentParameterSegmentRefEntryType] = field(
         default_factory=list,
@@ -8862,7 +9112,7 @@ class CommandContainerEntryListType:
             "name": "ParameterSegmentRefEntry",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     container_ref_entry: List[ArgumentContainerRefEntryType] = field(
         default_factory=list,
@@ -8870,7 +9120,7 @@ class CommandContainerEntryListType:
             "name": "ContainerRefEntry",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     container_segment_ref_entry: List[ArgumentContainerSegmentRefEntryType] = field(
         default_factory=list,
@@ -8878,7 +9128,7 @@ class CommandContainerEntryListType:
             "name": "ContainerSegmentRefEntry",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     stream_segment_entry: List[ArgumentStreamSegmentEntryType] = field(
         default_factory=list,
@@ -8886,7 +9136,7 @@ class CommandContainerEntryListType:
             "name": "StreamSegmentEntry",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     indirect_parameter_ref_entry: List[ArgumentIndirectParameterRefEntryType] = field(
         default_factory=list,
@@ -8894,7 +9144,7 @@ class CommandContainerEntryListType:
             "name": "IndirectParameterRefEntry",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     array_parameter_ref_entry: List[ArgumentArrayParameterRefEntryType] = field(
         default_factory=list,
@@ -8902,7 +9152,7 @@ class CommandContainerEntryListType:
             "name": "ArrayParameterRefEntry",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     argument_ref_entry: List[ArgumentArgumentRefEntryType] = field(
         default_factory=list,
@@ -8910,7 +9160,7 @@ class CommandContainerEntryListType:
             "name": "ArgumentRefEntry",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     array_argument_ref_entry: List[ArgumentArrayArgumentRefEntryType] = field(
         default_factory=list,
@@ -8918,7 +9168,7 @@ class CommandContainerEntryListType:
             "name": "ArrayArgumentRefEntry",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     fixed_value_entry: List[ArgumentFixedValueEntryType] = field(
         default_factory=list,
@@ -8926,7 +9176,7 @@ class CommandContainerEntryListType:
             "name": "FixedValueEntry",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -8957,13 +9207,14 @@ class EntryListType:
         the entire space of the Array is populated, a tolerant
         implementation will accept ParameterRefEntry also.
     """
+
     parameter_ref_entry: List[ParameterRefEntryType] = field(
         default_factory=list,
         metadata={
             "name": "ParameterRefEntry",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     parameter_segment_ref_entry: List[ParameterSegmentRefEntryType] = field(
         default_factory=list,
@@ -8971,7 +9222,7 @@ class EntryListType:
             "name": "ParameterSegmentRefEntry",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     container_ref_entry: List[ContainerRefEntryType] = field(
         default_factory=list,
@@ -8979,7 +9230,7 @@ class EntryListType:
             "name": "ContainerRefEntry",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     container_segment_ref_entry: List[ContainerSegmentRefEntryType] = field(
         default_factory=list,
@@ -8987,7 +9238,7 @@ class EntryListType:
             "name": "ContainerSegmentRefEntry",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     stream_segment_entry: List[StreamSegmentEntryType] = field(
         default_factory=list,
@@ -8995,7 +9246,7 @@ class EntryListType:
             "name": "StreamSegmentEntry",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     indirect_parameter_ref_entry: List[IndirectParameterRefEntryType] = field(
         default_factory=list,
@@ -9003,7 +9254,7 @@ class EntryListType:
             "name": "IndirectParameterRefEntry",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     array_parameter_ref_entry: List[ArrayParameterRefEntryType] = field(
         default_factory=list,
@@ -9011,7 +9262,7 @@ class EntryListType:
             "name": "ArrayParameterRefEntry",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -9040,13 +9291,14 @@ class EnumeratedParameterType(EnumeratedDataType):
         combination evaluates to true using the described matching
         criteria.
     """
+
     default_alarm: Optional[EnumerationAlarmType] = field(
         default=None,
         metadata={
             "name": "DefaultAlarm",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     context_alarm_list: Optional[EnumerationContextAlarmListType] = field(
         default=None,
@@ -9054,7 +9306,7 @@ class EnumeratedParameterType(EnumeratedDataType):
             "name": "ContextAlarmList",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -9071,13 +9323,14 @@ class FloatArgumentType(ArgumentFloatDataType):
     :ivar valid_range_set: Provides additional platform/program specific
         ranging information.
     """
+
     valid_range_set: Optional[ValidFloatRangeSetType] = field(
         default=None,
         metadata={
             "name": "ValidRangeSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -9110,13 +9363,14 @@ class FloatParameterType(FloatDataType):
         If multiple contexts evaluate to being in effect, then the first
         one that appears will take precedence.
     """
+
     default_alarm: Optional[NumericAlarmType] = field(
         default=None,
         metadata={
             "name": "DefaultAlarm",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     context_alarm_list: Optional[NumericContextAlarmListType] = field(
         default=None,
@@ -9124,7 +9378,7 @@ class FloatParameterType(FloatDataType):
             "name": "ContextAlarmList",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -9140,13 +9394,14 @@ class IntegerArgumentType(ArgumentIntegerDataType):
     :ivar valid_range_set: Provides additional platform/program specific
         ranging information.
     """
+
     valid_range_set: Optional[ValidIntegerRangeSetType] = field(
         default=None,
         metadata={
             "name": "ValidRangeSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -9178,13 +9433,14 @@ class IntegerParameterType(IntegerDataType):
         If multiple contexts evaluate to being in effect, then the first
         one that appears will take precedence.
     """
+
     default_alarm: Optional[NumericAlarmType] = field(
         default=None,
         metadata={
             "name": "DefaultAlarm",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     context_alarm_list: Optional[NumericContextAlarmListType] = field(
         default=None,
@@ -9192,7 +9448,7 @@ class IntegerParameterType(IntegerDataType):
             "name": "ContextAlarmList",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -9211,12 +9467,13 @@ class RelativeTimeDataType(BaseTimeDataType):
     also indicate a duration of minus 120 days as: -P120D.  An extension
     of Schema duration type.
     """
+
     initial_value: Optional[XmlDuration] = field(
         default=None,
         metadata={
             "name": "initialValue",
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -9257,13 +9514,14 @@ class StringParameterType(StringDataType):
         If multiple contexts evaluate to being in effect, then the first
         one that appears will take precedence.
     """
+
     default_alarm: Optional[StringAlarmType] = field(
         default=None,
         metadata={
             "name": "DefaultAlarm",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     context_alarm_list: Optional[StringContextAlarmListType] = field(
         default=None,
@@ -9271,7 +9529,7 @@ class StringParameterType(StringDataType):
             "name": "ContextAlarmList",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -9327,6 +9585,7 @@ class CommandContainerType(ContainerType):
         MetaCommand, this references the CommandContainer from the
         BaseMetaCommand.
     """
+
     entry_list: Optional[CommandContainerEntryListType] = field(
         default=None,
         metadata={
@@ -9334,7 +9593,7 @@ class CommandContainerType(ContainerType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
     base_container: Optional[BaseContainerType] = field(
         default=None,
@@ -9342,7 +9601,7 @@ class CommandContainerType(ContainerType):
             "name": "BaseContainer",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -9383,13 +9642,14 @@ class RelativeTimeParameterType(RelativeTimeDataType):
         If multiple contexts evaluate to being in effect, then the first
         one that appears will take precedence.
     """
+
     default_alarm: Optional[TimeAlarmType] = field(
         default=None,
         metadata={
             "name": "DefaultAlarm",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     context_alarm_list: Optional[TimeContextAlarmListType] = field(
         default=None,
@@ -9397,7 +9657,7 @@ class RelativeTimeParameterType(RelativeTimeDataType):
             "name": "ContextAlarmList",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -9426,6 +9686,7 @@ class SequenceContainerType(ContainerType):
     :ivar idle_pattern: The idle pattern is part of any unallocated
         space in the container.  This is uncommon.
     """
+
     entry_list: Optional[EntryListType] = field(
         default=None,
         metadata={
@@ -9433,7 +9694,7 @@ class SequenceContainerType(ContainerType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "required": True,
-        }
+        },
     )
     base_container: Optional[BaseContainerType] = field(
         default=None,
@@ -9441,13 +9702,13 @@ class SequenceContainerType(ContainerType):
             "name": "BaseContainer",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     abstract: bool = field(
         default=False,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
     idle_pattern: Union[int, str] = field(
         default="0x0",
@@ -9455,7 +9716,7 @@ class SequenceContainerType(ContainerType):
             "name": "idlePattern",
             "type": "Attribute",
             "pattern": r"0[xX][0-9a-fA-F]+",
-        }
+        },
     )
 
 
@@ -9493,13 +9754,14 @@ class ArgumentTypeSetType:
         engineering/calibrated value in the form of a structure of
         arguments of other types.
     """
+
     string_argument_type: List[StringArgumentType] = field(
         default_factory=list,
         metadata={
             "name": "StringArgumentType",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     enumerated_argument_type: List[EnumeratedArgumentType] = field(
         default_factory=list,
@@ -9507,7 +9769,7 @@ class ArgumentTypeSetType:
             "name": "EnumeratedArgumentType",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     integer_argument_type: List[IntegerArgumentType] = field(
         default_factory=list,
@@ -9515,7 +9777,7 @@ class ArgumentTypeSetType:
             "name": "IntegerArgumentType",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     binary_argument_type: List[BinaryArgumentType] = field(
         default_factory=list,
@@ -9523,7 +9785,7 @@ class ArgumentTypeSetType:
             "name": "BinaryArgumentType",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     float_argument_type: List[FloatArgumentType] = field(
         default_factory=list,
@@ -9531,7 +9793,7 @@ class ArgumentTypeSetType:
             "name": "FloatArgumentType",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     boolean_argument_type: List[BooleanArgumentType] = field(
         default_factory=list,
@@ -9539,7 +9801,7 @@ class ArgumentTypeSetType:
             "name": "BooleanArgumentType",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     relative_time_agument_type: List[RelativeTimeArgumentType] = field(
         default_factory=list,
@@ -9547,7 +9809,7 @@ class ArgumentTypeSetType:
             "name": "RelativeTimeAgumentType",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     absolute_time_argument_type: List[AbsoluteTimeArgumentType] = field(
         default_factory=list,
@@ -9555,7 +9817,7 @@ class ArgumentTypeSetType:
             "name": "AbsoluteTimeArgumentType",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     array_argument_type: List[ArrayArgumentType] = field(
         default_factory=list,
@@ -9563,7 +9825,7 @@ class ArgumentTypeSetType:
             "name": "ArrayArgumentType",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     aggregate_argument_type: List[AggregateArgumentType] = field(
         default_factory=list,
@@ -9571,7 +9833,7 @@ class ArgumentTypeSetType:
             "name": "AggregateArgumentType",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -9580,6 +9842,7 @@ class CommandContainerSetType:
     """
     Contains an unordered Set of Command Containers.
     """
+
     command_container: List[SequenceContainerType] = field(
         default_factory=list,
         metadata={
@@ -9587,7 +9850,7 @@ class CommandContainerSetType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "min_occurs": 1,
-        }
+        },
     )
 
 
@@ -9599,13 +9862,14 @@ class ContainerSetType:
     :ivar sequence_container: SequenceContainers define sequences of
         parameters or other containers.
     """
+
     sequence_container: List[SequenceContainerType] = field(
         default_factory=list,
         metadata={
             "name": "SequenceContainer",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -9664,13 +9928,14 @@ class MetaCommandType(NameDescriptionType):
         instantiated, rather only used as bases to inherit from to
         create specialized command definitions.
     """
+
     base_meta_command: Optional[BaseMetaCommandType] = field(
         default=None,
         metadata={
             "name": "BaseMetaCommand",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     system_name: Optional[str] = field(
         default=None,
@@ -9678,7 +9943,7 @@ class MetaCommandType(NameDescriptionType):
             "name": "SystemName",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     argument_list: Optional[ArgumentListType] = field(
         default=None,
@@ -9686,7 +9951,7 @@ class MetaCommandType(NameDescriptionType):
             "name": "ArgumentList",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     command_container: Optional[CommandContainerType] = field(
         default=None,
@@ -9694,7 +9959,7 @@ class MetaCommandType(NameDescriptionType):
             "name": "CommandContainer",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     transmission_constraint_list: Optional[TransmissionConstraintListType] = field(
         default=None,
@@ -9702,7 +9967,7 @@ class MetaCommandType(NameDescriptionType):
             "name": "TransmissionConstraintList",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     default_significance: Optional[SignificanceType] = field(
         default=None,
@@ -9710,7 +9975,7 @@ class MetaCommandType(NameDescriptionType):
             "name": "DefaultSignificance",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     context_significance_list: Optional[ContextSignificanceListType] = field(
         default=None,
@@ -9718,7 +9983,7 @@ class MetaCommandType(NameDescriptionType):
             "name": "ContextSignificanceList",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     interlock: Optional[InterlockType] = field(
         default=None,
@@ -9726,7 +9991,7 @@ class MetaCommandType(NameDescriptionType):
             "name": "Interlock",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     verifier_set: Optional[VerifierSetType] = field(
         default=None,
@@ -9734,7 +9999,7 @@ class MetaCommandType(NameDescriptionType):
             "name": "VerifierSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     parameter_to_set_list: Optional[ParameterToSetListType] = field(
         default=None,
@@ -9742,7 +10007,7 @@ class MetaCommandType(NameDescriptionType):
             "name": "ParameterToSetList",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     parameters_to_suspend_alarms_on_set: Optional[ParametersToSuspendAlarmsOnSetType] = field(
         default=None,
@@ -9750,13 +10015,13 @@ class MetaCommandType(NameDescriptionType):
             "name": "ParametersToSuspendAlarmsOnSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     abstract: bool = field(
         default=False,
         metadata={
             "type": "Attribute",
-        }
+        },
     )
 
 
@@ -9794,13 +10059,14 @@ class ParameterTypeSetType:
         an engineering/calibrated value in the form of a structure of
         parameters of other types.
     """
+
     string_parameter_type: List[StringParameterType] = field(
         default_factory=list,
         metadata={
             "name": "StringParameterType",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     enumerated_parameter_type: List[EnumeratedParameterType] = field(
         default_factory=list,
@@ -9808,7 +10074,7 @@ class ParameterTypeSetType:
             "name": "EnumeratedParameterType",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     integer_parameter_type: List[IntegerParameterType] = field(
         default_factory=list,
@@ -9816,7 +10082,7 @@ class ParameterTypeSetType:
             "name": "IntegerParameterType",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     binary_parameter_type: List[BinaryParameterType] = field(
         default_factory=list,
@@ -9824,7 +10090,7 @@ class ParameterTypeSetType:
             "name": "BinaryParameterType",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     float_parameter_type: List[FloatParameterType] = field(
         default_factory=list,
@@ -9832,7 +10098,7 @@ class ParameterTypeSetType:
             "name": "FloatParameterType",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     boolean_parameter_type: List[BooleanParameterType] = field(
         default_factory=list,
@@ -9840,7 +10106,7 @@ class ParameterTypeSetType:
             "name": "BooleanParameterType",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     relative_time_parameter_type: List[RelativeTimeParameterType] = field(
         default_factory=list,
@@ -9848,7 +10114,7 @@ class ParameterTypeSetType:
             "name": "RelativeTimeParameterType",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     absolute_time_parameter_type: List[AbsoluteTimeParameterType] = field(
         default_factory=list,
@@ -9856,7 +10122,7 @@ class ParameterTypeSetType:
             "name": "AbsoluteTimeParameterType",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     array_parameter_type: List[ArrayParameterType] = field(
         default_factory=list,
@@ -9864,7 +10130,7 @@ class ParameterTypeSetType:
             "name": "ArrayParameterType",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     aggregate_parameter_type: List[AggregateParameterType] = field(
         default_factory=list,
@@ -9872,7 +10138,7 @@ class ParameterTypeSetType:
             "name": "AggregateParameterType",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -9891,13 +10157,14 @@ class MetaCommandSetType:
     :ivar block_meta_command: Used to define a command that includes
         more than one atomic MetaCommand definition.
     """
+
     meta_command: List[MetaCommandType] = field(
         default_factory=list,
         metadata={
             "name": "MetaCommand",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     meta_command_ref: List[str] = field(
         default_factory=list,
@@ -9906,7 +10173,7 @@ class MetaCommandSetType:
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "pattern": r"/?(([^./:\[\]]+|\.|\.\.)/)*([^./:\[\]]+)+",
-        }
+        },
     )
     block_meta_command: List[BlockMetaCommandType] = field(
         default_factory=list,
@@ -9914,7 +10181,7 @@ class MetaCommandSetType:
             "name": "BlockMetaCommand",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -9940,13 +10207,14 @@ class TelemetryMetaDataType:
     :ivar stream_set:
     :ivar algorithm_set:
     """
+
     parameter_type_set: Optional[ParameterTypeSetType] = field(
         default=None,
         metadata={
             "name": "ParameterTypeSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     parameter_set: Optional[ParameterSetType] = field(
         default=None,
@@ -9954,7 +10222,7 @@ class TelemetryMetaDataType:
             "name": "ParameterSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     container_set: Optional[ContainerSetType] = field(
         default=None,
@@ -9962,7 +10230,7 @@ class TelemetryMetaDataType:
             "name": "ContainerSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     message_set: Optional[MessageSetType] = field(
         default=None,
@@ -9970,7 +10238,7 @@ class TelemetryMetaDataType:
             "name": "MessageSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     stream_set: Optional[StreamSetType] = field(
         default=None,
@@ -9978,7 +10246,7 @@ class TelemetryMetaDataType:
             "name": "StreamSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     algorithm_set: Optional[AlgorithmSetType] = field(
         default=None,
@@ -9986,7 +10254,7 @@ class TelemetryMetaDataType:
             "name": "AlgorithmSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -10016,13 +10284,14 @@ class CommandMetaDataType:
     :ivar stream_set: Contains an unordered set of Streams.
     :ivar algorithm_set: Contains an unordered set of Algorithms.
     """
+
     parameter_type_set: Optional[ParameterTypeSetType] = field(
         default=None,
         metadata={
             "name": "ParameterTypeSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     parameter_set: Optional[ParameterSetType] = field(
         default=None,
@@ -10030,7 +10299,7 @@ class CommandMetaDataType:
             "name": "ParameterSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     argument_type_set: Optional[ArgumentTypeSetType] = field(
         default=None,
@@ -10038,7 +10307,7 @@ class CommandMetaDataType:
             "name": "ArgumentTypeSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     meta_command_set: Optional[MetaCommandSetType] = field(
         default=None,
@@ -10046,7 +10315,7 @@ class CommandMetaDataType:
             "name": "MetaCommandSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     command_container_set: Optional[CommandContainerSetType] = field(
         default=None,
@@ -10054,7 +10323,7 @@ class CommandMetaDataType:
             "name": "CommandContainerSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     stream_set: Optional[StreamSetType] = field(
         default=None,
@@ -10062,7 +10331,7 @@ class CommandMetaDataType:
             "name": "StreamSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     algorithm_set: Optional[AlgorithmSetType] = field(
         default=None,
@@ -10070,7 +10339,7 @@ class CommandMetaDataType:
             "name": "AlgorithmSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
 
 
@@ -10099,13 +10368,14 @@ class SpaceSystemType(NameDescriptionType):
         document owner convenience.
     :ivar base:
     """
+
     header: Optional[HeaderType] = field(
         default=None,
         metadata={
             "name": "Header",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     telemetry_meta_data: Optional[TelemetryMetaDataType] = field(
         default=None,
@@ -10113,7 +10383,7 @@ class SpaceSystemType(NameDescriptionType):
             "name": "TelemetryMetaData",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     command_meta_data: Optional[CommandMetaDataType] = field(
         default=None,
@@ -10121,7 +10391,7 @@ class SpaceSystemType(NameDescriptionType):
             "name": "CommandMetaData",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     service_set: Optional[ServiceSetType] = field(
         default=None,
@@ -10129,7 +10399,7 @@ class SpaceSystemType(NameDescriptionType):
             "name": "ServiceSet",
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
-        }
+        },
     )
     space_system: List["SpaceSystem"] = field(
         default_factory=list,
@@ -10138,21 +10408,21 @@ class SpaceSystemType(NameDescriptionType):
             "type": "Element",
             "namespace": "http://www.omg.org/spec/XTCE/20180204",
             "nillable": True,
-        }
+        },
     )
     operational_status: Optional[str] = field(
         default=None,
         metadata={
             "name": "operationalStatus",
             "type": "Attribute",
-        }
+        },
     )
     base: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "namespace": "http://www.w3.org/XML/1998/namespace",
-        }
+        },
     )
 
 
@@ -10166,6 +10436,7 @@ class SpaceSystem(SpaceSystemType):
     algorithms, streams and commands.  A SpaceSystem may have child
     SpaceSystems, forming a SpaceSystem tree. See SpaceSystemType.
     """
+
     class Meta:
         nillable = True
         namespace = "http://www.omg.org/spec/XTCE/20180204"

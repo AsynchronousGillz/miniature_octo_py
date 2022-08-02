@@ -5,8 +5,8 @@
 from xsdata.exceptions import ParserError
 from xsdata.formats.dataclass.parsers import XmlParser
 
-from miniature.xtce.generated import SpaceSystem
 from miniature.xtce.exceptions import XtceInputError
+from miniature.xtce.generated import SpaceSystem
 
 
 class Xtce:
@@ -20,7 +20,7 @@ class Xtce:
 
     @classmethod
     def from_string(cls, source: str):
-        """ Load from a file """
+        """Load from a file"""
         try:
             return XmlParser().from_string(source, SpaceSystem)
         except ParserError as err:
