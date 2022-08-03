@@ -37,7 +37,7 @@ def main():
             s = Xtce.from_string(source)
         case "wind":
             wind = Wind(args.target)
-            wind.df.write.parquet("people.parquet")
+            wind.df.to_parquet("people.parquet")
 
 
 if __name__ == "__main__":

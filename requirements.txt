@@ -58,8 +58,14 @@ mypy-extensions==0.4.3
     # via black
 nodeenv==1.7.0
     # via pre-commit
+numpy==1.23.1
+    # via
+    #   pandas
+    #   pyarrow
 packaging==21.3
     # via build
+pandas==1.4.3
+    # via -r requirements.in
 pathspec==0.9.0
     # via black
 pep517==0.12.0
@@ -76,8 +82,8 @@ protobuf==3.17.3
     # via
     #   -r requirements.in
     #   grpcio-tools
-py4j==0.10.9.5
-    # via pyspark
+pyarrow==8.0.0
+    # via -r requirements.in
 pycodestyle==2.9.0
     # via flake8
 pycparser==2.21
@@ -92,8 +98,10 @@ pygments==2.12.0
     #   rich
 pyparsing==3.0.9
     # via packaging
-pyspark==3.3.0
-    # via -r requirements.in
+python-dateutil==2.8.2
+    # via pandas
+pytz==2022.1
+    # via pandas
 pyyaml==6.0
     # via pre-commit
 readme-renderer==35.0
@@ -115,6 +123,7 @@ six==1.16.0
     #   bleach
     #   grpcio
     #   protobuf
+    #   python-dateutil
 toml==0.10.2
     # via pre-commit
 tomli==2.0.1

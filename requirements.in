@@ -4,10 +4,11 @@ flake8
 grpcio
 grpcio-tools
 isort
+pandas
 pre-commit
 protobuf
+pyarrow
 pydantic
-pyspark
 setuptools
 twine
 wheel
