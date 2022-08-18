@@ -34,10 +34,9 @@ def main():
             JoinMachinist(args.target)
         case "xtce":
             source = _load(args.target)
-            s = Xtce.from_string(source)
+            Xtce.from_string(source)
         case "wind":
-            wind = Wind(args.target)
-            wind.df.to_parquet("people.parquet")
+            Wind(75000, 100).df.to_parquet("wind.parquet")
 
 
 if __name__ == "__main__":

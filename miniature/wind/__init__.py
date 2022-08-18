@@ -2,11 +2,21 @@
 # vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4
 """
 """
-import pandas
+import pandas as pd
+from miniature.wind.chaos import Lorenz
 
 
 class Wind:
-
-    def __init__(self, file_name: str):
+    def __init__(self, points: int = 1, step: float = 1):
         """TODO"""
-        self.df = pandas.read_json(path_or_buf=file_name, lines=True)
+        self.points = points
+        self.step = step
+        self.model = Lorenz(num_points=points, init_point=(0, 0, 0), step=step)
+
+    @property
+    def df(self):
+        try:
+            ndarray = self.model.get_coordinates()
+            return pd.DataFrame(ndarray, columns=["X", "Y", "Z"])
+        finally:
+            next(self.model)
