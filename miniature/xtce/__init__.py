@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4
-"""
-"""
+
 from xsdata.exceptions import ParserError
 from xsdata.formats.dataclass.parsers import XmlParser
 
 from miniature.xtce.exceptions import XtceInputError
 from miniature.xtce.generated import SpaceSystem
+from miniature.xtce.parsers import TelemetryParser
 
 
 class Xtce:
@@ -19,9 +19,11 @@ class Xtce:
     """
 
     @classmethod
-    def from_string(cls, source: str):
+    def from_string(cls, source: str) -> SpaceSystem:
         """Load from a file"""
         try:
-            return XmlParser().from_string(source, SpaceSystem)
+            space_system = XmlParser().from_string(source, SpaceSystem)
         except ParserError as err:
             raise XtceInputError("invalid input") from err
+
+        TelemetryParser.from_space_system(space_system)

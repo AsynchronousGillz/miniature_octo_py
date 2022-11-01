@@ -1,6 +1,7 @@
 build
 black
 flake8
+mypy
 grpcio
 grpcio-tools
 isort
