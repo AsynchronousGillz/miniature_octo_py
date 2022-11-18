@@ -9,6 +9,7 @@ import logging
 
 from miniature.machinist import JoinMachinist, SplitMachinist
 from miniature.monk import Monk
+from miniature.sag import Sag
 from miniature.wind import Wind
 from miniature.xtce import Xtce
 
@@ -18,7 +19,7 @@ logging.basicConfig(format="%(asctime)s %(message)s", level=logging.INFO)
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("target", type=str, help="action value")
-    parser.add_argument("action", choices=["split", "join", "monk", "xtce", "wind"])
+    parser.add_argument("action", choices=["split", "join", "monk", "sag", "xtce", "wind"])
     args = parser.parse_args()
 
     match args.action:
@@ -29,6 +30,8 @@ def main():
         case "monk":
             v = Monk.safe_eval(args.target)
             logging.info(f"({args.target}) = {v}")
+        case "sag":
+            Sag.main()
         case "xtce":
             with open(args.target, "r") as fp:
                 source = fp.read()
